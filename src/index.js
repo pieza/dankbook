@@ -12,10 +12,10 @@ dotenv.config()
 const app = express();
 
 // db connection
-const { mongoose } = require('./database');
+const { mongoose } = require('./database')
 
 // settings 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000)
 
 // middlewares
 app.use(morgan('dev'))
@@ -28,14 +28,16 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+// static Files
+app.use(express.static(path.join(__dirname, 'public')))
 
 // routes
-app.use(process.env.API_PATH, require('./controllers/authentication.controller'));
-
-// static Files
-app.use(express.static(path.join(__dirname, 'public')));;
+app.use(process.env.API_PATH, require('./controllers/authentication.controller'))
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 // starting the server
 app.listen(app.get('port'), () => {
     console.log(`server listening on port ${app.get('port')}`);
-});
+})
