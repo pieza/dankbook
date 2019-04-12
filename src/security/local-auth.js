@@ -22,7 +22,7 @@ passport.use('local-signup', new LocalStrategy({
     const user = User.findOne({email})
     // user already exist
     if(user)
-        return done(null, false, AAAA)
+        return done(null, false, AAAA) // aqui iba la vara de connect flash
 
     // create new user
     const newUser = new User()
