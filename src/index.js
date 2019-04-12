@@ -30,13 +30,12 @@ app.use(passport.session())
 
 
 // routes
-//app.use('/api/tasks', require('./routes/task.routes'));
+app.use(process.env.API_PATH, require('./controllers/authentication.controller'));
 
 // static Files
 app.use(express.static(path.join(__dirname, 'public')));;
 
 // starting the server
 app.listen(app.get('port'), () => {
-    console.log(process.env.NODE_ENV)
-    console.log(`Server on port ${app.get('port')}`);
+    console.log(`server listening on port ${app.get('port')}`);
 });
