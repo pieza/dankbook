@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
-class Home extends Component {
+class Newsfeed extends Component {
 
     render() {
         return (
             <div>
-                <p>Hola</p>
+                <p>asdasdad</p>
             </div>
         )
     }
 }
 
-export default Home
+export default Newsfeed

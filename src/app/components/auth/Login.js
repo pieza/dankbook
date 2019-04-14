@@ -1,29 +1,37 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { connect } from 'react-redux'
+import { login } from '../../actions/auth.actions'
 
-import { API_PATH } from '../constants/environment'
 
 class Login extends Component{
     constructor(){
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errors: {}
         }
 
         this.onChange = this.onChange.bind(this)
         this.submit = this.submit.bind(this)
     }
+    
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.isAuthenticated)
+            this.props.history.push('/')
+        if (nextProps.errors)
+            this.setState({ errors: nextProps.errors })
+    }
 
     submit(e){
         e.preventDefault()
 
-        axios.post(API_PATH + '/login', {
+        this.props.login({
             username: this.state.username,
             password: this.state.password
-        })
-        .then(response => console.log(response.data))
-        .catch(error => console.log(error))
+        }, this.props.history)
     }
 
     onChange(e){
@@ -34,6 +42,8 @@ class Login extends Component{
     }
 
     render() {
+        const { errors } = this.state
+        
         return (
             <div>
                 <div className="container">
@@ -44,12 +54,20 @@ class Login extends Component{
                                     <form onSubmit={this.submit}>
                                         <div className="row">
                                             <div className="input-field col s12">
-                                                <input onChange={this.onChange} name="username" type="email" placeholder="Username" autoFocus />
+                                                <input onChange={this.onChange} name="username" type="text" placeholder="Username"
+                                                className={classnames('', {
+                                                    'invalid': errors.username
+                                                })} autoFocus />
+                                            {errors.username && (<span className="helper-text" data-error={errors.username}></span>)}
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="input-field col s12">
-                                                <input onChange={this.onChange} name="password" type="password" placeholder="Password" className="materialize-textarea"></input>
+                                                <input onChange={this.onChange} name="password" type="password" placeholder="Password" className="materialize-textarea"
+                                                className={classnames('', {
+                                                    'invalid': errors.password
+                                                })} />
+                                            {errors.password && (<span className="helper-text" data-error={errors.password}></span>)}
                                             </div>
                                         </div>
 
@@ -67,4 +85,15 @@ class Login extends Component{
     }
 }
 
-export default Login
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+})
+
+export default connect(mapStateToProps, { login } )(Login)
