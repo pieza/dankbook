@@ -5,3 +5,15 @@ img.avatar-navbar {
     border-radius: 50%;
     vertical-align: middle
 }
+
+.container {
+    width: 80%;
+}
+.Home {
+    padding-top: 6.4rem;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 99;
+}

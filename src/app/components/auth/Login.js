@@ -18,6 +18,11 @@ class Login extends Component{
         this.submit = this.submit.bind(this)
     }
     
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) 
+            this.props.history.push('/')    
+    }
+
     componentWillReceiveProps(nextProps) {
         if(nextProps.isAuthenticated)
             this.props.history.push('/')
@@ -57,7 +62,7 @@ class Login extends Component{
                                                 <input onChange={this.onChange} name="username" type="text" placeholder="Username"
                                                 className={classnames('', {
                                                     'invalid': errors.username
-                                                })} autoFocus />
+                                                })} autoFocus required/>
                                             {errors.username && (<span className="helper-text" data-error={errors.username}></span>)}
                                             </div>
                                         </div>
@@ -66,7 +71,7 @@ class Login extends Component{
                                                 <input onChange={this.onChange} name="password" type="password" placeholder="Password" className="materialize-textarea"
                                                 className={classnames('', {
                                                     'invalid': errors.password
-                                                })} />
+                                                })} required/>
                                             {errors.password && (<span className="helper-text" data-error={errors.password}></span>)}
                                             </div>
                                         </div>
@@ -96,4 +101,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps, { login } )(Login)
+export default connect(mapStateToProps, { login })(Login)

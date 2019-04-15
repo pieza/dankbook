@@ -2,7 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const passport = require('passport')
 const path = require('path')
-const flash = require('connect-flash')
+const multer = require('multer')
 const createError = require('http-errors')
 
 module.exports = app => {
@@ -16,7 +16,7 @@ module.exports = app => {
     // middlewares
     app.use(morgan('dev'))
     app.use(express.json())
-    app.use(flash())
+    app.use(multer({dest: path.join(__dirname, 'public/upload/temp')}).single('file'))
     require('./security/passport')
     app.use(passport.initialize())
 
@@ -25,6 +25,7 @@ module.exports = app => {
 
     // routes
     app.use(process.env.API_PATH, require('./controllers/authentication.controller'))
+    app.use(process.env.API_PATH + '/posts', require('./controllers/post.controller'))
     app.use('*', (req, res, next) => {
         if(!req.originalUrl.includes(process.env.API_PATH))
             res.sendFile(path.join(__dirname, 'public', 'index.html'))

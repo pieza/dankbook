@@ -14,30 +14,49 @@ class Navigation extends Component {
         const { isAuthenticated, user } = this.props.auth
 
         const authLinks = (
-            <ul className="right hide-on-med-and-down">
+            <div>
                 <li>
-                    <a href="" className="dropdown-trigger" onClick={this.onLogoutClick.bind(this)}>
-                        <img className="avatar-navbar " src={user.avatar}></img>
+                    <a href="" className="dropdown-trigger" data-target="profile-dropdown">
+                        <img className="avatar-navbar" src={user.avatar}></img>
                         <i className="material-icons right">arrow_drop_down</i> {user.username}
                     </a>
                 </li>
-            </ul>  
+            </div>  
         )
 
         const guestLinks = (
-            <ul className="right hide-on-med-and-down">
+            <div>
                 <li><Link to="/login"><i className="material-icons left">play_for_work</i>Login</Link></li>
                 <li><Link to="/signup"><i className="material-icons left">how_to_reg</i>Sign up</Link></li>
-            </ul>  
+            </div>  
+        )
+        
+        const profileDropdown = (
+            <ul id="profile-dropdown" className="dropdown-content">
+                <li><a href="">See profile</a></li>
+                <li><a href="" onClick={this.onLogoutClick.bind(this)}>Logout</a></li>
+            </ul>
         )
 
         return (
-            <nav className="light-blue darken-4">
-                <div className="nav-wrapper" style={{padding: '0 50px'}}>
-                    <Link to="/" className="brand-logo">DankBook</Link>
+            <div>
+                { profileDropdown }
+                <nav className="navbar light-blue darken-4">
+                    <div className="nav-wrapper">
+                        <Link to="/" className="brand-logo">DankBook</Link>
+                        <Link to="/" data-target="mobile-menu" className="sidenav-trigger"><i className="material-icons">menu</i></Link>
+                        <ul className="right hide-on-med-and-down">
+                            { isAuthenticated ? authLinks : guestLinks }
+                        </ul>
+                    </div>
+                </nav>
+
+                {/** Mobile menu */}
+                <ul className="sidenav" id="mobile-menu">
                     { isAuthenticated ? authLinks : guestLinks }
-                </div>
-            </nav>
+                </ul>
+                
+            </div>
         )
     }
 }

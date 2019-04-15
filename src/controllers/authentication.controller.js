@@ -33,7 +33,7 @@ router.post('/login', async (req, res, next) => {
             return res.status(400).json({errors: { password: 'Incorrect password' }})
         
         // user match
-        const payload = {id: user.id, username: user.username, avatar: user.avatar }
+        const payload = user.getSimpleUser()
 
         jtw.sign(payload, 
             process.env.SECRET_JWT_KEY, 
@@ -46,7 +46,7 @@ router.post('/login', async (req, res, next) => {
             }
         )
     } catch(err) {
-        next(err)
+        next({errors: { image: err }})
     }
 })
 
@@ -97,7 +97,7 @@ router.post('/signup', async (req, res, next) => {
     }
 })
 
-router.get('/current', passport.authenticate('jwt'), (req, res) => {
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
     res.json({msg: 'success'})
 })
 

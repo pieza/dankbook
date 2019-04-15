@@ -18,4 +18,13 @@ UserSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password)
 }
 
+UserSchema.methods.getSimpleUser = function (password) {
+    return { 
+        id: this.id,
+        username: this.username, 
+        email: this.email, 
+        avatar: this.avatar 
+    }
+}
+
 module.exports = mongoose.model('User', UserSchema)
