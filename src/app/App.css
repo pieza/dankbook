@@ -9,11 +9,12 @@ img.avatar-navbar {
 .container {
     width: 80%;
 }
-.Home {
-    padding-top: 6.4rem;
-}
 
 .navbar {
     position: fixed;
     z-index: 99;
+}
+
+.navbar-container {
+    padding-bottom: 6.4rem;
 }

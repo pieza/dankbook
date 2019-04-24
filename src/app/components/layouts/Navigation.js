@@ -39,7 +39,7 @@ class Navigation extends Component {
         )
 
         return (
-            <div>
+            <div className="navbar-container">
                 { profileDropdown }
                 <nav className="navbar light-blue darken-4">
                     <div className="nav-wrapper">

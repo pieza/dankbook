@@ -1,14 +1,6 @@
 import axios from 'axios';
 
-import {
-    ADD_POST,
-    GET_ERRORS,
-    CLEAR_ERRORS,
-    GET_POSTS,
-    GET_POST,
-    POST_LOADING,
-    DELETE_POST
-} from './types';
+import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST } from './types';
 
 import { API_PATH } from '../constants/environment'
 

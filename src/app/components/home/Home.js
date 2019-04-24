@@ -14,7 +14,7 @@ class Home extends Component {
         const newsfeed = (<Newsfeed />)
 
         return (
-            <div class="Home">
+            <div>
                 { isAuthenticated ? newsfeed : landing }
             </div>
         )
