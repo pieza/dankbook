@@ -1,5 +1,5 @@
-const { uploadImage } = require('../utils/image-uploader')
 const Post = require('../models/post')
+const { IMAGE, VIDEO } = require('../utils/enums/media-types')
 
 const service = {}
 
@@ -13,21 +13,21 @@ service.findAll = async () => {
     return await Promise.all(results)
 }
 
-service.create = async (postToCreate, image) => {
+service.create = async (postToCreate, file) => {
     const newPost = new Post({
         user_id: postToCreate.user_id,
         description: postToCreate.description
     })
-    if(image){
-        try {
-            const url = await uploadImage(image)
-            newPost.image_url = url
-        } catch(err){
-            throw new Error({errors: { image: err.message}})
+
+    const postCreated = await newPost.save()
+
+    if(postToCreate.media){
+        switch(postToCreate.media){
+            case IMAGE:
+                break
         }
     }
 
-    const postCreated = await newPost.save()
     return postCreated.getComplete()  
 }
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from '../../actions/auth.actions'
 
-class Navigation extends Component {
+class Navbar extends Component {
     onLogoutClick(e) {
         e.preventDefault()
         this.props.logout()
@@ -61,7 +61,7 @@ class Navigation extends Component {
     }
 }
 
-Navigation.propTypes = {
+Navbar.propTypes = {
     logout: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 }
@@ -70,4 +70,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
   
-export default connect(mapStateToProps, { logout })(Navigation)
+export default connect(mapStateToProps, { logout })(Navbar)

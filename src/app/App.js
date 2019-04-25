@@ -11,7 +11,7 @@ import { getCookie } from './utils/cookie-helper'
 
 import { COOKIE_JWT } from './constants/environment'
 
-import Navigation from './components/layouts/Navigation'
+import Navbar from './components/layouts/Navbar'
 import Home from './components/home/Home'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
@@ -48,7 +48,7 @@ class App extends Component {
             <Provider store={store}>
                 <BrowserRouter>
                     {/* Navigation */}
-                    <Navigation />
+                    <Navbar />
 
                     {/* Routes */}
                     <Switch>

@@ -33,7 +33,7 @@ router.post('/login', async (req, res, next) => {
             return res.status(400).json({errors: { password: 'Incorrect password' }})
         
         // user match
-        const payload = user.getSimpleUser()
+        const payload = user.getSimple()
 
         jtw.sign(payload, 
             process.env.SECRET_JWT_KEY, 

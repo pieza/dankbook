@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(404).json({ nopostsfound: 'No posts found with that Id' }))
 })
 
-router.post('/', passport.authenticate('jwt', {session: false}) , async (req, res, next) => {
+router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     postService.create(req.body, req.file).then(post => {
         res.status(200).json(post)
     }).catch(err => next(err))  
