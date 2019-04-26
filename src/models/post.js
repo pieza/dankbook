@@ -20,8 +20,8 @@ PostSchema.methods.getComplete = async function () {
         this._doc.user = user.getSimple()
 
     // get media
-    const media = await Media.find({ post_id: this.post_id })
-
+    const media = await Media.findOne({ post_id: this.post_id })
+    
     if(media)
         this._doc.media = media
         

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { addPost } from '../../actions/post.actions'
+import { IMAGE, VIDEO } from '../../../utils/enums/media-types'
 
 class AddPostForm extends Component {
     constructor() {
@@ -42,7 +43,11 @@ class AddPostForm extends Component {
 
         formData.append('user_id', user.id)
         formData.append('description', this.state.description)
-        formData.append('file', this.state.image)
+        console.log(IMAGE)
+        if(this.state.image){
+            formData.append('media', JSON.stringify({ type: IMAGE }))
+            formData.append('file', this.state.image)
+        }
 
         this.props.addPost(formData)
         this.setState({ description: '', image: null })

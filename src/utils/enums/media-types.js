@@ -1,2 +1,7 @@
-export const IMAGE = 'IMAGE'
-export const VIDEO = 'VIDEO'
+const mediaTypes = {
+    IMAGE: 'IMAGE',
+    VIDEO: 'VIDEO'
+}
+
+module.exports = mediaTypes
+

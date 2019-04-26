@@ -29,7 +29,7 @@ service.attachImageFile = async (post_id, file) => {
     }
 }
 
-service.attachImageUri = (post_id, url) => {
+service.attachImageUri = async (post_id, url) => {
     const post = await Post.findById(post_id)
 
     if(!post)

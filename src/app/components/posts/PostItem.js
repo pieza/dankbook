@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePost, addLike, removeLike } from '../../actions/post.actions';
+import MediaItem from './media/MediaItem';
 
 class PostItem extends Component {
     onDeleteClick(id) {
@@ -37,9 +38,9 @@ class PostItem extends Component {
                 <div className="card-content">
                     <p>{ post.description }</p>
                 </div>
-                <div className="card-image waves-effect waves-block waves-light">
-                    <img className="activator" src={ post.image_url } />
-                </div>
+
+                { post.media ? <MediaItem key={post.media.id} media={post.media} /> : <div></div> }
+
                 <div className="card-action">
                     <a href="#">like</a>
                     <a href="#">comment</a>

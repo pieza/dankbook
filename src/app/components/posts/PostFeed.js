@@ -12,7 +12,6 @@ class PostFeed extends Component {
     }
 
     render() {
-        console.log(this.props)
         const { posts, loading } = this.props.post
         let postContent
        if(posts === null || loading){

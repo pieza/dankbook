@@ -1,5 +1,6 @@
 const Post = require('../models/post')
 const { IMAGE, VIDEO } = require('../utils/enums/media-types')
+const mediaService = require('./media.service')
 
 const service = {}
 
@@ -21,11 +22,10 @@ service.create = async (postToCreate, file) => {
 
     const postCreated = await newPost.save()
 
+    console.log(postToCreate.media)
     if(postToCreate.media){
-        switch(postToCreate.media){
-            case IMAGE:
-                break
-        }
+        if(postToCreate.media.type === IMAGE && file)
+            await mediaService.attachImageFile(postCreated.id, file)
     }
 
     return postCreated.getComplete()  
