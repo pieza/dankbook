@@ -22,7 +22,6 @@ service.create = async (postToCreate, file) => {
 
     const postCreated = await newPost.save()
 
-    console.log(postToCreate.media)
     if(postToCreate.media){
         if(postToCreate.media.type === IMAGE && file)
             await mediaService.attachImageFile(postCreated.id, file)

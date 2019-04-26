@@ -21,9 +21,11 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    const { errors, isValid } = validatePostInput({...req.body, file: req.file})   
+    if(req.body.media_string)
+        req.body.media = JSON.parse(req.body.media_string)
+
+    const { errors, isValid } = validatePostInput({...req.body, file: req.file})  
     
-    // input data is incomplete
     if(!isValid)
         return res.status(400).json({ errors })
 

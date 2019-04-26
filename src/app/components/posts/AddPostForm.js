@@ -43,9 +43,9 @@ class AddPostForm extends Component {
 
         formData.append('user_id', user.id)
         formData.append('description', this.state.description)
-        console.log(IMAGE)
+
         if(this.state.image){
-            formData.append('media', JSON.stringify({ type: IMAGE }))
+            formData.append('media_string', JSON.stringify({ type: IMAGE }))
             formData.append('file', this.state.image)
         }
 

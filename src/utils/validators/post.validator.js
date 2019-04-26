@@ -17,7 +17,7 @@ module.exports = function validatePostInput(data) {
         switch(data.media.type){
             case IMAGE:
             case VIDEO:
-                if(isEmpty(data.media.url) || isEmpty(data.file))
+                if(isEmpty(data.media.url) && isEmpty(data.file))
                     errors.media = 'Media attached is invalid'
                 break
             default:
