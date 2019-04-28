@@ -58,7 +58,7 @@ class AddPostForm extends Component {
 
         return (
             <div className="row">
-                <div className="col s12 m7">
+                <div className="col-sm-12 col-md-7">
                     <div className="card">
                         <form onSubmit={this.onSubmit}>
                             <div className="card-content">

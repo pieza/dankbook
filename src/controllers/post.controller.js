@@ -34,4 +34,10 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next
     }).catch(err => next(err))  
 })
 
+router.delete('/:id', (req, res) => {
+    Post.findByIdAndDelete(req.params.id)
+        .then(async post => res.json(await post.getComplete()))
+        .catch(err => res.status(404).json({ nopostsfound: 'No posts found with that Id' }))
+})
+
 module.exports = router;

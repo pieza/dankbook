@@ -6,9 +6,7 @@ class ImageMedia extends Component {
         const { url } = this.props
 
         return (
-            <div className="card-image waves-effect waves-block waves-light">
-                <img className="activator" src={ url } />
-            </div>
+            <img className="card-img" src={ url } />
         )
     }
 

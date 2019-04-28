@@ -11,10 +11,43 @@ img.avatar-navbar {
 }
 
 .navbar {
-    position: fixed;
-    z-index: 99;
+    z-index: 99; 
 }
 
 .navbar-container {
     padding-bottom: 6.4rem;
+}
+
+.nav.navbar-nav li {
+    float: left;
+}
+
+.clickable
+{
+    cursor: pointer;
+}
+
+.clickable .glyphicon
+{
+    background: rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px
+}
+
+.list-group-item {
+    padding: 0px;
+}
+
+.post-item {
+    margin: 1rem;
+}
+
+.simple-header {
+    background-color: "#fff";
+    border-bottom: "none";
+}
+
+.material-icons {
+    vertical-align: bottom;
 }

@@ -8,7 +8,7 @@ class PostList extends Component {
     render() {
         const { posts } = this.props
 
-        return posts.map(post => <div className="col s12 m7"><PostItem key={post.id} post={post}/></div>)
+        return posts.map(post => <div className="col-sm-12 col-md-7"><PostItem key={post.id} post={post}/></div>)
     }
 
 }

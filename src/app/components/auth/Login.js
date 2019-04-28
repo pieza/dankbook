@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import { Context } from '../../Context'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { login } from '../../actions/auth.actions'
 
-
 class Login extends Component{
+    static contextType = Context
+
     constructor(){
         super()
         this.state = {
@@ -48,38 +50,41 @@ class Login extends Component{
 
     render() {
         const { errors } = this.state
-        
+        const { _loading } = this.context
+
         return (
             <div>
                 <div className="container">
                     <div className="row">
                         <div className="col s5">
                             <div className="card">
-                                <div className="card-content">
+                                <div className="card-body">
                                     <form onSubmit={this.submit}>
-                                        <div className="row">
-                                            <div className="input-field col s12">
+                                        <div>
+                                            <div className="form-group">
+                                                <label>Username</label>
                                                 <input onChange={this.onChange} name="username" type="text" placeholder="Username"
-                                                className={classnames('', {
-                                                    'invalid': errors.username
+                                                className={'form-control ' + classnames('', {
+                                                    'is-invalid': errors.username
                                                 })} autoFocus required/>
-                                            {errors.username && (<span className="helper-text" data-error={errors.username}></span>)}
+                                                {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
                                             </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="input-field col s12">
+                                            <div className="form-group">
+                                                <label>Password</label>
                                                 <input onChange={this.onChange} name="password" type="password" placeholder="Password" className="materialize-textarea"
-                                                className={classnames('', {
-                                                    'invalid': errors.password
+                                                className={'form-control ' + classnames('', {
+                                                    'is-invalid': errors.password
                                                 })} required/>
-                                            {errors.password && (<span className="helper-text" data-error={errors.password}></span>)}
+                                                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                                             </div>
                                         </div>
-
                                         <button type="submit" className="btn light-blue darken-4">
                                             Log in
                                         </button>
                                     </form>
+                                </div>
+                                <div className="class">
+
                                 </div>
                             </div>
                         </div>

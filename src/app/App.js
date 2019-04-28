@@ -15,7 +15,7 @@ import Navbar from './components/layouts/Navbar'
 import Home from './components/home/Home'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
-
+import { Context } from './Context'
 import './App.css';
 
 // check for token
@@ -42,23 +42,23 @@ if (token) {
 }
 
 class App extends Component {
-
     render() {
         return (
-            <Provider store={store}>
-                <BrowserRouter>
-                    {/* Navigation */}
-                    <Navbar />
+            <Context.Provider value={{ _loading: false }}>
+                <Provider store={store}>
+                    <BrowserRouter>
+                        {/* Navigation */}
+                        <Navbar />
 
-                    {/* Routes */}
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/signup" component={Signup} />
-                    </Switch>
-                </BrowserRouter>
-            </Provider>
-
+                        {/* Routes */}
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/signup" component={Signup} />
+                        </Switch>
+                    </BrowserRouter>
+                </Provider>
+            </Context.Provider>
         )
     }
 }

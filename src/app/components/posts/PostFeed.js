@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { getPosts } from '../../actions/post.actions'
 import PostList from './PostList';
+import Loading from '../shared/Loading';
 
 class PostFeed extends Component {
 
@@ -14,13 +15,18 @@ class PostFeed extends Component {
     render() {
         const { posts, loading } = this.props.post
         let postContent
-       if(posts === null || loading){
+
+        if(loading)
+            postContent = <div className="col-sm-12 col-md-7" style={{lineHeight: '30rem'}}>
+                <Loading size={'5rem'} />
+            </div>
+        else if(posts === null)
             postContent = <div></div>
-        } else {
+        else 
             postContent = <PostList posts={posts}/>
-        }
+    
         return (
-            <div>
+            <div className="row">
                 { postContent }
             </div>
         )

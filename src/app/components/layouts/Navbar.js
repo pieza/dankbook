@@ -13,49 +13,57 @@ class Navbar extends Component {
     render() {
         const { isAuthenticated, user } = this.props.auth
 
+        const profileDropdown = (
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item" href="">See profile</a>
+                <div className="dropdown-divider"></div>
+                <a className="dropdown-item" href="" onClick={this.onLogoutClick.bind(this)}>Logout</a>
+            </div>
+        )
+
         const authLinks = (
-            <div>
-                <li>
-                    <a href="" className="dropdown-trigger" data-target="profile-dropdown">
-                        <img className="avatar-navbar" src={user.avatar}></img>
-                        <i className="material-icons right">arrow_drop_down</i> {user.username}
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item dropdown">
+                    <a href="" className="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img className="avatar-navbar" src={user.avatar}></img> {user.username}
                     </a>
+                    { profileDropdown }
                 </li>
-            </div>  
+            </ul>  
         )
 
         const guestLinks = (
-            <div>
-                <li><Link to="/login"><i className="material-icons left">play_for_work</i>Login</Link></li>
-                <li><Link to="/signup"><i className="material-icons left">how_to_reg</i>Sign up</Link></li>
-            </div>  
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                        <i className="material-icons left">play_for_work</i>
+                        Login
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/signup">
+                        <i className="material-icons left">how_to_reg</i>
+                        Sign up
+                    </Link>
+                </li>
+            </ul>  
         )
         
-        const profileDropdown = (
-            <ul id="profile-dropdown" className="dropdown-content">
-                <li><a href="">See profile</a></li>
-                <li><a href="" onClick={this.onLogoutClick.bind(this)}>Logout</a></li>
-            </ul>
-        )
 
         return (
             <div className="navbar-container">
-                { profileDropdown }
-                <nav className="navbar light-blue darken-4">
-                    <div className="nav-wrapper">
-                        <Link to="/" className="brand-logo">DankBook</Link>
-                        <Link to="/" data-target="mobile-menu" className="sidenav-trigger"><i className="material-icons">menu</i></Link>
-                        <ul className="right hide-on-med-and-down">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+                    <div className="container-fluid">
+                        <Link to="/" className="navbar-brand">DankBook</Link>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse w-100 order-3 dual-collapse" id="menu">
                             { isAuthenticated ? authLinks : guestLinks }
-                        </ul>
+                        </div>
                     </div>
-                </nav>
 
-                {/** Mobile menu */}
-                <ul className="sidenav" id="mobile-menu">
-                    { isAuthenticated ? authLinks : guestLinks }
-                </ul>
-                
+                </nav>          
             </div>
         )
     }

@@ -8,10 +8,8 @@ class Newsfeed extends Component {
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <AddPostForm />
-                    <PostFeed />
-                </div>
+                <AddPostForm />
+                <PostFeed />
             </div>
         )
     }
