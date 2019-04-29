@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import { Context } from '../../Context'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
@@ -56,9 +57,10 @@ class Login extends Component{
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="col s5">
+                        <div className="col-sm-5">
                             <div className="card">
                                 <div className="card-body">
+                                    <center><h4 className="card-title">Login</h4></center>
                                     <form onSubmit={this.submit}>
                                         <div>
                                             <div className="form-group">
@@ -78,13 +80,13 @@ class Login extends Component{
                                                 {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                                             </div>
                                         </div>
-                                        <button type="submit" className="btn light-blue darken-4">
+                                        <button type="submit" className="btn btn-primary btn-block">
                                             Log in
                                         </button>
                                     </form>
                                 </div>
-                                <div className="class">
-
+                                <div className="card-footer">
+                                    <center><Link to="/signup">forgot password?</Link></center>               
                                 </div>
                             </div>
                         </div>

@@ -57,6 +57,7 @@ class App extends Component {
                             <Route path="/signup" component={Signup} />
                         </Switch>
                     </BrowserRouter>
+                    { this.context._loading ? (<div className="loading"><center><img src="https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif"></img></center></div>) : null }
                 </Provider>
             </Context.Provider>
         )

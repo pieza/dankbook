@@ -56,47 +56,49 @@ class Signup extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="col s5">
+                        <div className="col-sm-6">
                             <div className="card">
-                                <div className="card-content">
+                                <div className="card-body">
                                     <form onSubmit={this.submit}>
-                                        <div className="row">
-                                            <div className="input-field col s12">
-                                                <i className="material-icons prefix">account_circle</i>
+                                        <div>
+                                            <div className="form-group">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        <i className="material-icons prefix">account_circle</i>
+                                                    </div>
+                                                </div>
                                                 <input onChange={this.onChange} name="username" type="text" placeholder="Username"
-                                                    className={classnames('', {
-                                                        'invalid': errors.username
+                                                    className={'form-control ' + classnames('', {
+                                                        'is-invalid': errors.username
                                                     })} autoFocus />
                                                 {errors.username && (<span className="helper-text" data-error={errors.username}></span>)}
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="input-field col s12">
-                                                <input onChange={this.onChange} name="email" type="email" placeholder="Email"
-                                                    className={classnames('', {
-                                                        'invalid': errors.email
-                                                    })} />
-                                                {errors.email && (<span className="helper-text" data-error={errors.email}></span>)}
-                                            </div>
+
+                                        <div className="form-group">
+                                            <input onChange={this.onChange} name="email" type="email" placeholder="Email"
+                                                className={'form-control ' + classnames('', {
+                                                    'is-invalid': errors.email
+                                                })} />
+                                            {errors.email && (<span className="helper-text" data-error={errors.email}></span>)}
                                         </div>
-                                        <div className="row">
-                                            <div className="input-field col s12">
-                                                <input onChange={this.onChange} name="password" type="password" placeholder="Password"
-                                                    className={classnames('', {
-                                                        'invalid': errors.password
-                                                    })} />
-                                                {errors.password && (<span className="helper-text" data-error={errors.password}></span>)}
-                                            </div>
+
+                                        <div className="form-group">
+                                            <input onChange={this.onChange} name="password" type="password" placeholder="Password"
+                                                className={'form-control ' + classnames('', {
+                                                    'is-invalid': errors.password
+                                                })} />
+                                            {errors.password && (<span className="helper-text" data-error={errors.password}></span>)}
                                         </div>
-                                        <div className="row">
-                                            <div className="input-field col s12">
-                                                <input onChange={this.onChange} name="password2" type="password" placeholder="Confirm password"
-                                                    className={classnames('', {
-                                                        'invalid': errors.password2
-                                                    })} />
-                                                {errors.password2 && (<span className="helper-text" data-error={errors.password2}></span>)}
-                                            </div>
+
+                                        <div className="form-group">
+                                            <input onChange={this.onChange} name="password2" type="password" placeholder="Confirm password"
+                                                className={'form-control ' + classnames('', {
+                                                    'is-invalid': errors.password2
+                                                })} />
+                                            {errors.password2 && (<span className="helper-text" data-error={errors.password2}></span>)}
                                         </div>
+
                                         <button type="submit" className="btn light-blue darken-4">
                                             Sign up
                                         </button>

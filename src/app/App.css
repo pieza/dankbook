@@ -1,15 +1,4 @@
-img.avatar-navbar {
-    background-color: azure;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    vertical-align: middle
-}
-
-.container {
-    width: 80%;
-}
-
+/* Navbar */
 .navbar {
     z-index: 99; 
 }
@@ -20,6 +9,21 @@ img.avatar-navbar {
 
 .nav.navbar-nav li {
     float: left;
+}
+
+/* END Navbar*/
+/* =================================== */
+/* Fixes */
+img.avatar-navbar {
+    background-color: azure;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.container {
+    width: 80%;
 }
 
 .clickable
@@ -51,3 +55,29 @@ img.avatar-navbar {
 .material-icons {
     vertical-align: bottom;
 }
+
+/* Absolute Center Spinner */
+.loading {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .loading:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(233, 231, 231, 0.8), rgba(204, 197, 197, 0.8));
+    background: -webkit-radial-gradient(rgba(233, 231, 231, 0.8), rgba(204, 197, 197, 0.8));
+  }
