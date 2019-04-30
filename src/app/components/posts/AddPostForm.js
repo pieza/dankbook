@@ -61,30 +61,30 @@ class AddPostForm extends Component {
                 <div className="col-sm-12 col-md-7">
                     <div className="card">
                         <form onSubmit={this.onSubmit}>
-                            <div className="card-content">
-                                <span className="card-title">Create Post</span>
-                                <input type='text' name="description" placeholder="Type something..." onChange={this.onChange} />
-                                <div>
-                                    <img width="50%" height="50%" src={this.state.image_preview}/>
-                                </div>
-                                <div className="file-field input-field">
-                                    <div className="btn light-blue darken-4">
-                                        <span>Image</span>
-                                        <input type='file' name="image" onChange={this.onFileChange}/>
+                            <div className="card-body">
+                                <center><h4 className="card-title">Create Post</h4></center>
+                                
+                                    <div className="form-group">
+                                        <input type='text' name="description" placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
+                                                'is-invalid': errors.description})}/>
+                                        { errors.description && (<div className="invalid-feedback">{errors.description}</div>) }
                                     </div>
-                                    <div className="file-path-wrapper">
-                                        <input className="file-path validate" type="text" 
-                                        className={classnames('file-path', {
-                                            'invalid': errors.image
-                                        })} />
+                                    <div className="form-group">
+                                        <div>
+                                            { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview}/> : null }
+                                        </div>
+                                        <div className="custom-file">
+                                            <input type='file' name="image" onChange={this.onFileChange} className={classnames('custom-file-input', {
+                                                'is-invalid': errors.image})}/>
+                                            <label className="custom-file-label">Choose file...</label>
+                                            { errors.image && (<div className="invalid-feedback">{errors.image}</div>)}
+                                        </div>
                                     </div>
-                                    {errors.image && (<span className="helper-text" data-error={errors.image}></span>)}
-                                </div>
-                            </div>
-                            <div className="card-action grey-text text-darken-4">
-                                <button type="submit" className="btn light-blue darken-4">
-                                    Post
-                                </button>
+
+                                    <button type="submit" className="btn light-blue darken-4">
+                                        Post
+                                    </button>
+
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import classnames from 'classnames'
@@ -59,50 +60,77 @@ class Signup extends Component {
                         <div className="col-sm-6">
                             <div className="card">
                                 <div className="card-body">
+                                    <center><h4 className="card-title">Signup</h4></center>
                                     <form onSubmit={this.submit}>
                                         <div>
                                             <div className="form-group">
-                                                <div className="input-group-prepend">
-                                                    <div className="input-group-text">
-                                                        <i className="material-icons prefix">account_circle</i>
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <div className="input-group-text">
+                                                            <i className="material-icons prefix">account_circle</i>
+                                                        </div>
                                                     </div>
+                                                    <input onChange={this.onChange} name="username" type="text" placeholder="Username"  aria-describedby="basic-addon1"
+                                                        className={'form-control ' + classnames('', {
+                                                            'is-invalid': errors.username
+                                                        })} autoFocus />
+                                                    {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
                                                 </div>
-                                                <input onChange={this.onChange} name="username" type="text" placeholder="Username"
-                                                    className={'form-control ' + classnames('', {
-                                                        'is-invalid': errors.username
-                                                    })} autoFocus />
-                                                {errors.username && (<span className="helper-text" data-error={errors.username}></span>)}
                                             </div>
                                         </div>
 
                                         <div className="form-group">
-                                            <input onChange={this.onChange} name="email" type="email" placeholder="Email"
-                                                className={'form-control ' + classnames('', {
-                                                    'is-invalid': errors.email
-                                                })} />
-                                            {errors.email && (<span className="helper-text" data-error={errors.email}></span>)}
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        <i className="material-icons prefix">mail</i>
+                                                    </div>
+                                                </div>
+                                                <input onChange={this.onChange} name="email" type="email" placeholder="Email"
+                                                    className={'form-control ' + classnames('', {
+                                                        'is-invalid': errors.email
+                                                    })} />
+                                                {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                                            </div>
                                         </div>
 
                                         <div className="form-group">
-                                            <input onChange={this.onChange} name="password" type="password" placeholder="Password"
-                                                className={'form-control ' + classnames('', {
-                                                    'is-invalid': errors.password
-                                                })} />
-                                            {errors.password && (<span className="helper-text" data-error={errors.password}></span>)}
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        <i className="material-icons prefix">vpn_key</i>
+                                                    </div>
+                                                </div>
+                                                <input onChange={this.onChange} name="password" type="password" placeholder="Password"
+                                                    className={'form-control ' + classnames('', {
+                                                        'is-invalid': errors.password
+                                                    })} />
+                                                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                                            </div>
                                         </div>
 
                                         <div className="form-group">
-                                            <input onChange={this.onChange} name="password2" type="password" placeholder="Confirm password"
-                                                className={'form-control ' + classnames('', {
-                                                    'is-invalid': errors.password2
-                                                })} />
-                                            {errors.password2 && (<span className="helper-text" data-error={errors.password2}></span>)}
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        <i className="material-icons prefix">vpn_key</i>
+                                                    </div>
+                                                </div>
+                                                <input onChange={this.onChange} name="password2" type="password" placeholder="Confirm password"
+                                                    className={'form-control ' + classnames('', {
+                                                        'is-invalid': errors.password2
+                                                    })} />
+                                                {errors.password2 && (<div className="invalid-feedback">{errors.password2}</div>)}
+                                            </div>
                                         </div>
 
-                                        <button type="submit" className="btn light-blue darken-4">
+                                        <button type="submit" className="btn btn-primary btn-block">
                                             Sign up
                                         </button>
                                     </form>
+                                </div>
+                                <div className="card-footer">
+                                    <center><Link to="/login">I have an account</Link></center>               
                                 </div>
                             </div>
                         </div>

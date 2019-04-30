@@ -12,19 +12,8 @@
 }
 
 /* END Navbar*/
-/* =================================== */
-/* Fixes */
-img.avatar-navbar {
-    background-color: azure;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    vertical-align: middle
-}
 
-.container {
-    width: 80%;
-}
+/* Clieckeable elements */
 
 .clickable
 {
@@ -37,6 +26,20 @@ img.avatar-navbar {
     display: inline-block;
     padding: 6px 12px;
     border-radius: 4px
+}
+/* END Clieckeable elements */
+
+/* Fixes */
+img.avatar-navbar {
+    background-color: azure;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.container {
+    width: 80%;
 }
 
 .list-group-item {

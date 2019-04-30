@@ -64,20 +64,32 @@ class Login extends Component{
                                     <form onSubmit={this.submit}>
                                         <div>
                                             <div className="form-group">
-                                                <label>Username</label>
-                                                <input onChange={this.onChange} name="username" type="text" placeholder="Username"
-                                                className={'form-control ' + classnames('', {
-                                                    'is-invalid': errors.username
-                                                })} autoFocus required/>
-                                                {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <div className="input-group-text">
+                                                            <i className="material-icons prefix">account_circle</i>
+                                                        </div>
+                                                    </div>
+                                                    <input onChange={this.onChange} name="username" type="text" placeholder="Username"
+                                                        className={'form-control ' + classnames('', {
+                                                            'is-invalid': errors.username
+                                                        })} autoFocus required/>
+                                                    {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
+                                                </div>
                                             </div>
                                             <div className="form-group">
-                                                <label>Password</label>
-                                                <input onChange={this.onChange} name="password" type="password" placeholder="Password" className="materialize-textarea"
-                                                className={'form-control ' + classnames('', {
-                                                    'is-invalid': errors.password
-                                                })} required/>
-                                                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <div className="input-group-text">
+                                                            <i className="material-icons prefix">vpn_key</i>
+                                                        </div>
+                                                    </div>
+                                                    <input onChange={this.onChange} name="password" type="password" placeholder="Password" className="materialize-textarea"
+                                                        className={'form-control ' + classnames('', {
+                                                            'is-invalid': errors.password
+                                                        })} required/>
+                                                    {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                                                </div>
                                             </div>
                                         </div>
                                         <button type="submit" className="btn btn-primary btn-block">

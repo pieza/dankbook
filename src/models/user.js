@@ -18,7 +18,7 @@ UserSchema.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password)
 }
 
-UserSchema.methods.getSimple = function (password) {
+UserSchema.methods.getSimple = function () {
     return { 
         id: this.id,
         username: this.username, 
