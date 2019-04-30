@@ -1,10 +1,10 @@
 /* Navbar */
 .navbar {
-    z-index: 99; 
+    z-index: 9999; 
 }
 
 .navbar-container {
-    padding-bottom: 6.4rem;
+    padding-bottom: 5rem;
 }
 
 .nav.navbar-nav li {

@@ -39,11 +39,13 @@ class PostItem extends Component {
                         <i className="material-icons right float-xl">more_vert</i>
                     </a>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item">Report</a>
+                        <a className="dropdown-item">
+                            <i className="material-icons left">flag</i> Report
+                        </a>
                         <div className="dropdown-divider"></div>
                         { post.user_id === auth.user.id ? (
                             <a className="dropdown-item" onClick={this.onDeleteClick.bind(this, post._id)}>
-                                <i className="material-icons left">play_for_work</i> Delete
+                                <i className="material-icons left">delete</i> Delete
                             </a>
                         ) : null }
                         

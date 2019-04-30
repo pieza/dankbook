@@ -17,7 +17,7 @@ class PostFeed extends Component {
         let postContent
 
         if(loading)
-            postContent = <div className="col-sm-12 col-md-7" style={{lineHeight: '30rem'}}>
+            postContent = <div className="col-sm-12 col-md-7" style={{lineHeight: '20rem'}}>
                 <Loading size={'5rem'} />
             </div>
         else if(posts === null)

@@ -55,36 +55,52 @@ class AddPostForm extends Component {
 
     render() {
         const { errors } = this.state
+        const { isAuthenticated, user } = this.props.auth
 
         return (
             <div className="row">
                 <div className="col-sm-12 col-md-7">
-                    <div className="card">
+                    <div className="card post-item">
                         <form onSubmit={this.onSubmit}>
                             <div className="card-body">
-                                <center><h4 className="card-title">Create Post</h4></center>
-                                
-                                    <div className="form-group">
+                                <div className="form-row">
+                                    <div className="form-group col-sm-1 mb-0">
+                                        <img className="avatar-navbar" src={user.avatar}></img>
+                                    </div>
+                                    <div className="form-group col-sm-11 mb-0">
                                         <input type='text' name="description" placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
-                                                'is-invalid': errors.description})}/>
+                                            'is-invalid': errors.description})}/>
                                         { errors.description && (<div className="invalid-feedback">{errors.description}</div>) }
                                     </div>
-                                    <div className="form-group">
-                                        <div>
-                                            { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview}/> : null }
-                                        </div>
-                                        <div className="custom-file">
-                                            <input type='file' name="image" onChange={this.onFileChange} className={classnames('custom-file-input', {
-                                                'is-invalid': errors.image})}/>
-                                            <label className="custom-file-label">Choose file...</label>
-                                            { errors.image && (<div className="invalid-feedback">{errors.image}</div>)}
-                                        </div>
+                                </div>
+                                
+                                <div className="form-group">
+                                    <div>
+                                        { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview}/> : null }
                                     </div>
+                                    {/* <div className="custom-file">
+                                        <input type='file' name="image" onChange={this.onFileChange} className={classnames('custom-file-input', {
+                                            'is-invalid': errors.image})}/>
+                                        <label className="custom-file-label">Choose file...</label>
+                                        { errors.image && (<div className="invalid-feedback">{errors.image}</div>)}
+                                    </div> */}
+                                </div>
+                            </div>
 
-                                    <button type="submit" className="btn light-blue darken-4">
-                                        Post
-                                    </button>
-
+                            <div className="card-footer" style={{padding: "0rem"}}>
+                                <div className="row">
+                                    <div className="col-sm-6 mb-0">
+                                        <label className="btn btn-primary mb-0">
+                                            <i className="material-icons">image</i>
+                                            <input type="file" name="image" onChange={this.onFileChange} hidden></input>
+                                        </label>
+                                    </div>
+                                    <div className="col-sm-6 mb-0">   
+                                        <button type="submit" className="btn btn-primary btn-block mb-0 float-right">
+                                            Post
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
