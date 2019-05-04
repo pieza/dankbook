@@ -57,9 +57,9 @@ class PostItem extends Component {
                         { post.media ? <MediaItem key={post.media.id} media={post.media} /> : <div></div> }
                     </li>
                 </ul>
-                <div className="card-body">
-                    <a href="#">like</a>
-                    <a href="#">comment</a>
+                <div className="card-body align-items-center justify-content-center" style={{padding: ".75rem"}}>
+                    <a className="post-action clickable"><i className="material-icons left">thumb_up</i> like</a>
+                    <a className=" clickable float-right post-action"><i className="material-icons left">add_comment</i> comment</a>
                 </div>
             </div>
 

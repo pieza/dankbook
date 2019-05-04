@@ -56,8 +56,12 @@ class Signup extends Component {
         return (
             <div>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-sm-6">
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col-md-6">
+                            <p>Creese una cuenta ak7</p>
+                        </div>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-5">
                             <div className="card">
                                 <div className="card-body">
                                     <center><h4 className="card-title">Signup</h4></center>

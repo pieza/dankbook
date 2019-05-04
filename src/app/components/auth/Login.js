@@ -56,8 +56,12 @@ class Login extends Component{
         return (
             <div>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-sm-5">
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col-md-6">
+                            <p>Logueese ak7</p>
+                        </div>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-5">
                             <div className="card">
                                 <div className="card-body">
                                     <center><h4 className="card-title">Login</h4></center>
@@ -92,7 +96,7 @@ class Login extends Component{
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" className="btn btn-primary btn-block">
+                                        <button type="submit" className="btn btn-outline-primary btn-block">
                                             Log in
                                         </button>
                                     </form>

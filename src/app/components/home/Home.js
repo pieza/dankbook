@@ -10,13 +10,8 @@ class Home extends Component {
     render() {
         const { isAuthenticated, user } = this.props.auth
 
-        const landing = (<Landing />)
-        const newsfeed = (<Newsfeed />)
-
         return (
-            <div>
-                { isAuthenticated ? newsfeed : landing }
-            </div>
+            isAuthenticated ? <Newsfeed /> : <Landing /> 
         )
     }
 }

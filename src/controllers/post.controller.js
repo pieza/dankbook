@@ -29,9 +29,15 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res, next
     if(!isValid)
         return res.status(400).json({ errors })
 
-    postService.create(req.body, req.file).then(post => {
+    postService.create(req.body, req.file).then(post => { 
         res.status(200).json(post)
-    }).catch(err => next(err))  
+    }).catch( err => next(err))
+})
+
+router.post('/like/:id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    postService.toggleLike(req.params.id, req.user.id).then(post => { 
+        res.status(200).json(post)
+    }).catch( err => next(err))
 })
 
 router.delete('/:id', (req, res) => {

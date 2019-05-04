@@ -25,7 +25,7 @@ service.attachImageFile = async (post_id, file) => {
     
         return await newMedia.save() 
     } catch(err){
-        throw new Error({errors: { media: err.message}})
+        throw new Error(err.message)
     }
 }
 

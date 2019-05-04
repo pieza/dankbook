@@ -15,6 +15,7 @@ import Navbar from './components/layouts/Navbar'
 import Home from './components/home/Home'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
+import NotFound from './components/errors/404-not-found'
 import { Context } from './Context'
 import './App.css';
 
@@ -55,6 +56,9 @@ class App extends Component {
                             <Route exact path="/" component={Home} />
                             <Route path="/login" component={Login} />
                             <Route path="/signup" component={Signup} />
+
+                            {/* Default */}
+                            <Route component={NotFound} />
                         </Switch>
                     </BrowserRouter>
                     { this.context._loading ? (<div className="loading"><center><img src="https://cdn.dribbble.com/users/600626/screenshots/2944614/loading_12.gif"></img></center></div>) : null }

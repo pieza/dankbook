@@ -1,4 +1,5 @@
 const Post = require('../models/post')
+const User = require('../models/user')
 const { IMAGE, VIDEO } = require('../utils/enums/media-types')
 const mediaService = require('./media.service')
 
@@ -27,7 +28,28 @@ service.create = async (postToCreate, file) => {
             await mediaService.attachImageFile(postCreated.id, file)
     }
 
-    return postCreated.getComplete()  
+    return await postCreated.getComplete()
+}
+
+service.toggleLike = async (post_id, user_id) => {
+    const user = await User.findById(user_id)
+    const post = await Post.findById(post_id) 
+
+    if(!user)
+        throw new Error('User not found')
+    
+    if(!post)
+        throw new Error('Post not found')
+
+    // check if user already liked the post
+    if(post.likes.filter(like => like.user.toString() === user.id).length > 0)
+        post.likes.splice(post.likes.indexOf(user.id), 1)
+    else
+        post.likes.push(user.id)
+    
+    const postUpdated = await post.save()
+    return await postUpdated.getComplete()
+    
 }
 
 module.exports = service

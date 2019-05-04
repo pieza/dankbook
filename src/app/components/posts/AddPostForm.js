@@ -85,18 +85,19 @@ class AddPostForm extends Component {
                                         { errors.image && (<div className="invalid-feedback">{errors.image}</div>)}
                                     </div> */}
                                 </div>
+                                { errors.media && (<div className="invalid-feedback" style={{display: "block"}}>{errors.media}</div>) }
                             </div>
 
-                            <div className="card-footer" style={{padding: "0rem"}}>
+                            <div className="card-footer" style={{padding: "0rem", backgroundColor: "#FFF"}}>
                                 <div className="row">
                                     <div className="col-sm-6 mb-0">
                                         <label className="btn btn-primary mb-0">
                                             <i className="material-icons">image</i>
-                                            <input type="file" name="image" onChange={this.onFileChange} hidden></input>
+                                            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={this.onFileChange} hidden></input>
                                         </label>
                                     </div>
                                     <div className="col-sm-6 mb-0">   
-                                        <button type="submit" className="btn btn-primary btn-block mb-0 float-right">
+                                        <button type="submit" className="btn btn-primary mb-0 float-right">
                                             Post
                                         </button>
                                     </div>
