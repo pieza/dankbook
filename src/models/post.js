@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 const User = require('../models/user')
 const Media = require('../models/media')
+const Comment = require('../models/comment')
 
 const PostSchema = new Schema({
     user_id: { type: Schema.Types.ObjectId, ref: 'User', require: true },
@@ -24,6 +25,12 @@ PostSchema.methods.getComplete = async function () {
     
     if(media)
         this._doc.media = media
+
+    // get comments
+    const comments = await Comment.find({ post_id: this.id })
+    
+    if(comments)
+        this._doc.comments = comments
         
     return this
 }

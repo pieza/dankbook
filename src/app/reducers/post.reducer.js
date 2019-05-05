@@ -1,4 +1,4 @@
-import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING } from '../actions/types'
+import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, TOGGLE_LIKE } from '../actions/types'
 
 const initialState = {
     posts: [],
@@ -28,13 +28,21 @@ export default function (state = initialState, action) {
         case ADD_POST:
             return {
                 ...state,
-                posts: [action.payload, ...state.posts]
+                posts: [action.payload, ...state.posts],
+                loading: false
             };
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter(post => post._id !== action.payload)
+                posts: state.posts.filter(post => post._id !== action.payload),
+                loading: false
             };
+        case TOGGLE_LIKE:
+            return {
+                ...state,
+                posts: state.posts.map(_post => _post._id === action.payload.id 
+                    ? { ..._post, likes: action.payload.likes, like_loading: false } : _post)
+            }
         default:
             return state
     }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST } from './types';
+import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST, TOGGLE_LIKE } from './types';
 
 import { API_PATH } from '../constants/environment'
 
@@ -87,13 +87,13 @@ export const deletePost = id => dispatch => {
 // Add Like
 export const toggleLike = id => dispatch => {
     axios
-        .post(`/api/posts/like/${id}`)
+        .post(`${API_PATH}/posts/like/${id}`)
         .then(res => 
             dispatch({
                 type: TOGGLE_LIKE,
-                payload: res.data
+                payload: { id, likes: res.data }
             }))
-        .catch(err =>
+        .catch(err => 
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data
@@ -103,9 +103,9 @@ export const toggleLike = id => dispatch => {
 
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
-    dispatch(clearErrors());
+    dispatch(clearErrors())
     axios
-        .post(`/api/posts/comment/${postId}`, commentData)
+        .post(`${API_PATH}/posts/comment/${postId}`, commentData)
         .then(res =>
             dispatch({
                 type: GET_POST,
@@ -115,7 +115,7 @@ export const addComment = (postId, commentData) => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err.response.data.errors
             })
         )
 }
@@ -123,7 +123,7 @@ export const addComment = (postId, commentData) => dispatch => {
 // Delete Comment
 export const deleteComment = (postId, commentId) => dispatch => {
     axios
-        .delete(`/api/posts/comment/${postId}/${commentId}`)
+        .delete(`${API_PATH}/posts/comment/${postId}/${commentId}`)
         .then(res =>
             dispatch({
                 type: GET_POST,
@@ -133,7 +133,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err.response.data.errors
             })
         )
 }

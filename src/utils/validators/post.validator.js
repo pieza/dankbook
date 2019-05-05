@@ -32,7 +32,7 @@ module.exports = function validatePostInput(data) {
                 errors.media = 'Unknown media type'
                 break
         }
-    } else if (!Validator.isLength(data.description, { min: 5 })) 
+    } else if (!Validator.isLength(data.description, { min: 1 })) 
             errors.description = 'Cannot submit an empty post'
 
     return {

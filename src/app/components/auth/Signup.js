@@ -54,87 +54,89 @@ class Signup extends Component {
         const { errors } = this.state
 
         return (
-            <div>
-                <div className="container">
-                    <div className="row align-items-center justify-content-center">
-                        <div className="col-md-6">
-                            <p>Creese una cuenta ak7</p>
-                        </div>
-                        <div className="col-md-1"></div>
-                        <div className="col-md-5">
-                            <div className="card">
-                                <div className="card-body">
-                                    <center><h4 className="card-title">Signup</h4></center>
-                                    <form onSubmit={this.submit}>
-                                        <div>
+            <div className="landing">
+                <div className="dark-overlay landing-inner">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-6">
+                                <p>Creese una cuenta ak7</p>
+                            </div>
+                            <div className="col-md-1"></div>
+                            <div className="col-md-5">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <center><h4 className="card-title">Signup</h4></center>
+                                        <form onSubmit={this.submit}>
+                                            <div>
+                                                <div className="form-group">
+                                                    <div className="input-group">
+                                                        <div className="input-group-prepend">
+                                                            <div className="input-group-text">
+                                                                <i className="material-icons prefix">account_circle</i>
+                                                            </div>
+                                                        </div>
+                                                        <input onChange={this.onChange} name="username" type="text" placeholder="Username"  aria-describedby="basic-addon1"
+                                                            className={'form-control ' + classnames('', {
+                                                                'is-invalid': errors.username
+                                                            })} autoFocus />
+                                                        {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div className="form-group">
                                                 <div className="input-group">
                                                     <div className="input-group-prepend">
                                                         <div className="input-group-text">
-                                                            <i className="material-icons prefix">account_circle</i>
+                                                            <i className="material-icons prefix">mail</i>
                                                         </div>
                                                     </div>
-                                                    <input onChange={this.onChange} name="username" type="text" placeholder="Username"  aria-describedby="basic-addon1"
+                                                    <input onChange={this.onChange} name="email" type="email" placeholder="Email"
                                                         className={'form-control ' + classnames('', {
-                                                            'is-invalid': errors.username
-                                                        })} autoFocus />
-                                                    {errors.username && (<div className="invalid-feedback">{errors.username}</div>)}
+                                                            'is-invalid': errors.email
+                                                        })} />
+                                                    {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="form-group">
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <div className="input-group-text">
-                                                        <i className="material-icons prefix">mail</i>
+                                            <div className="form-group">
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <div className="input-group-text">
+                                                            <i className="material-icons prefix">vpn_key</i>
+                                                        </div>
                                                     </div>
+                                                    <input onChange={this.onChange} name="password" type="password" placeholder="Password"
+                                                        className={'form-control ' + classnames('', {
+                                                            'is-invalid': errors.password
+                                                        })} />
+                                                    {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                                                 </div>
-                                                <input onChange={this.onChange} name="email" type="email" placeholder="Email"
-                                                    className={'form-control ' + classnames('', {
-                                                        'is-invalid': errors.email
-                                                    })} />
-                                                {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                                             </div>
-                                        </div>
 
-                                        <div className="form-group">
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <div className="input-group-text">
-                                                        <i className="material-icons prefix">vpn_key</i>
+                                            <div className="form-group">
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <div className="input-group-text">
+                                                            <i className="material-icons prefix">vpn_key</i>
+                                                        </div>
                                                     </div>
+                                                    <input onChange={this.onChange} name="password2" type="password" placeholder="Confirm password"
+                                                        className={'form-control ' + classnames('', {
+                                                            'is-invalid': errors.password2
+                                                        })} />
+                                                    {errors.password2 && (<div className="invalid-feedback">{errors.password2}</div>)}
                                                 </div>
-                                                <input onChange={this.onChange} name="password" type="password" placeholder="Password"
-                                                    className={'form-control ' + classnames('', {
-                                                        'is-invalid': errors.password
-                                                    })} />
-                                                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                                             </div>
-                                        </div>
 
-                                        <div className="form-group">
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <div className="input-group-text">
-                                                        <i className="material-icons prefix">vpn_key</i>
-                                                    </div>
-                                                </div>
-                                                <input onChange={this.onChange} name="password2" type="password" placeholder="Confirm password"
-                                                    className={'form-control ' + classnames('', {
-                                                        'is-invalid': errors.password2
-                                                    })} />
-                                                {errors.password2 && (<div className="invalid-feedback">{errors.password2}</div>)}
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" className="btn btn-primary btn-block">
-                                            Sign up
-                                        </button>
-                                    </form>
-                                </div>
-                                <div className="card-footer">
-                                    <center><Link to="/login">I have an account</Link></center>               
+                                            <button type="submit" className="btn btn-primary btn-block">
+                                                Sign up
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div className="card-footer">
+                                        <center><Link to="/login">I have an account</Link></center>               
+                                    </div>
                                 </div>
                             </div>
                         </div>

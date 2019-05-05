@@ -5,19 +5,26 @@ class Landing extends Component {
 
     render() {
         return (
-            <div className="container h-100">
-                <div className="row align-items-center justify-content-center">
-                    <h1>asdfsdf</h1>
-                </div>
-                <div className="row align-items-center justify-content-center">
-                    <h4>asdas</h4>
-                </div>
-                <div className="row align-items-center justify-content-center">
-                    <div className="col-sm-6 my-auto">
-                        <Link to="/login" class="btn btn-block btn-lg btn-outline-primary mr-7 mb-7">Login</Link>
-                    </div>
-                    <div className="col-sm-6 my-auto">
-                        <Link to="/signup" class="btn btn-block btn-lg btn-outline-success mr-7 mb-7">Signup</Link>
+            <div className="landing">
+                <div className="dark-overlay landing-inner text-light">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <h1 className="display-3 mb-4">Developer Connector</h1>
+                                <p className="lead">
+                                    {' '}
+                                    Create a developer profile/portfolio, share posts and get help
+                                    from other developers
+                                </p>
+                                <hr />
+                                <Link to="/signup" className="btn btn-lg btn-primary mr-2">
+                                    Sign Up
+                                </Link>
+                                <Link to="/login" className="btn btn-lg btn-light">
+                                    Login
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

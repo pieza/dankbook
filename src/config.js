@@ -26,6 +26,7 @@ module.exports = app => {
     // routes
     app.use(process.env.API_PATH, require('./controllers/authentication.controller'))
     app.use(process.env.API_PATH + '/posts', require('./controllers/post.controller'))
+    app.use(process.env.API_PATH + '/profile', require('./controllers/profile.controller'))
     app.use('*', (req, res, next) => {
         if(!req.originalUrl.includes(process.env.API_PATH))
             res.sendFile(path.join(__dirname, 'public', 'index.html'))

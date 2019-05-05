@@ -44,7 +44,7 @@ class AddPostForm extends Component {
         formData.append('user_id', user.id)
         formData.append('description', this.state.description)
 
-        if(this.state.image){
+        if (this.state.image) {
             formData.append('media_string', JSON.stringify({ type: IMAGE }))
             formData.append('file', this.state.image)
         }
@@ -64,45 +64,42 @@ class AddPostForm extends Component {
                         <form onSubmit={this.onSubmit}>
                             <div className="card-body">
                                 <div className="form-row">
-                                    <div className="form-group col-sm-1 mb-0">
-                                        <img className="avatar-navbar" src={user.avatar}></img>
-                                    </div>
-                                    <div className="form-group col-sm-11 mb-0">
-                                        <input type='text' name="description" placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
-                                            'is-invalid': errors.description})}/>
-                                        { errors.description && (<div className="invalid-feedback">{errors.description}</div>) }
+                                    <div className="form-group col-sm-12 mb-0">
+                                        <div className="input-group">
+                                            <div className="input-group-prepend mb-0" style={{marginRight: "15px"}}>
+                                                <img className="avatar-navbar" src={user.avatar}></img>
+                                            </div>
+                                            <input type='text' name="description" placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
+                                                'is-invalid': errors.description
+                                                })} />
+                                            {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                                
+
                                 <div className="form-group">
                                     <div>
-                                        { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview}/> : null }
+                                        {this.state.image ? <img width="20%" height="20%" src={this.state.image_preview} /> : null}
                                     </div>
-                                    {/* <div className="custom-file">
-                                        <input type='file' name="image" onChange={this.onFileChange} className={classnames('custom-file-input', {
-                                            'is-invalid': errors.image})}/>
-                                        <label className="custom-file-label">Choose file...</label>
-                                        { errors.image && (<div className="invalid-feedback">{errors.image}</div>)}
-                                    </div> */}
                                 </div>
-                                { errors.media && (<div className="invalid-feedback" style={{display: "block"}}>{errors.media}</div>) }
+                                {errors.media && (<div className="invalid-feedback" style={{ display: "block" }}>{errors.media}</div>)}
                             </div>
 
-                            <div className="card-footer" style={{padding: "0rem", backgroundColor: "#FFF"}}>
-                                <div className="row">
-                                    <div className="col-sm-6 mb-0">
-                                        <label className="btn btn-primary mb-0">
-                                            <i className="material-icons">image</i>
+                            <div className="card-footer" style={{ padding: "0rem", backgroundColor: "#FFF" }}>
+                                <div className="btn-group">
+                                    <label className="btn btn-primary mb-0">
+                                        <i className="material-icons">image</i> Image
                                             <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={this.onFileChange} hidden></input>
-                                        </label>
-                                    </div>
-                                    <div className="col-sm-6 mb-0">   
-                                        <button type="submit" className="btn btn-primary mb-0 float-right">
-                                            Post
-                                        </button>
-                                    </div>
+                                    </label>
+                                </div>
+                                <div className="btn-group float-right">
+                                    <button type="submit" className="btn btn-primary mb-0 float-right">
+                                        <i className="material-icons">accessibility</i> Post
+                                    </button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ class Navbar extends Component {
 
         const profileDropdown = (
             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="">See profile</a>
+                <Link to={`/profile/${user.username}`} className="dropdown-item">View profile</Link>
                 <div className="dropdown-divider"></div>
                 <a className="dropdown-item" href="" onClick={this.onLogoutClick.bind(this)}>Logout</a>
             </div>
@@ -52,7 +52,7 @@ class Navbar extends Component {
 
         return (
             <div className="navbar-container">
-                <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
                     <div className="container-fluid">
                         <Link to="/" className="navbar-brand">DankBook</Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

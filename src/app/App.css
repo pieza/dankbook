@@ -11,6 +11,29 @@
     float: left;
 }
 
+/* Landing */
+.landing {
+    position: relative;
+    background: url("https://www.models-resource.com/resources/big_icons/22/21899.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 93.9vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+}
+
+.landing-inner {
+    padding-top: 15%;
+}
+
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /* Clieckeable elements */
 .clickable
@@ -23,11 +46,11 @@ a:not([href]):not([tabindex]).post-action{
 }
 
 a:not([href]):not([tabindex]).post-action:hover{
-    color: red;
+    color: black;
 }
 
-a:not([href]):not([tabindex]).post-action .is-active{
-    color: blue;
+a:not([href]):not([tabindex]).post-action.is-active{
+    color: #007bff;
 }
 
 /* Fixes */
@@ -37,10 +60,6 @@ img.avatar-navbar {
     height: 30px;
     border-radius: 50%;
     vertical-align: middle
-}
-
-.container {
-    width: 80%;
 }
 
 .list-group-item {
