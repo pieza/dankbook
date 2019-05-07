@@ -48,11 +48,11 @@ class AddCommentForm extends Component {
         const { isAuthenticated, user } = this.props.auth
 
         return (
-            <li className="list-group-item">
+            <li className="list-group-item" style={{border: "0px"}}>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-row">
                         <div className="form-group col-sm-12 mb-0">
-                            <div className="input-group">
+                            <div className="input-group" style={{backgroundColor:"rgba(0,0,0,.03)"}}>
                                 <div className="input-group-prepend mb-0" style={{ marginRight: "15px" }}>
                                     <img className="avatar-navbar" src={user.avatar}></img>
                                 </div>

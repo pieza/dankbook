@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
         case GET_POST:
             return {
                 ...state,
-                post: action.payload,
+                posts: action.payload,
                 loading: false
             };
         case ADD_POST:
@@ -41,7 +41,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 posts: state.posts.map(_post => _post._id === action.payload.id 
-                    ? { ..._post, likes: action.payload.likes, like_loading: false } : _post)
+                    ? { ..._post, likes: action.payload.likes } : _post)
             }
         default:
             return state

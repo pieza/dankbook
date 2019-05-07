@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 import { connect } from 'react-redux';
@@ -25,12 +26,24 @@ class CommentItem extends Component {
         }
     }
 
+    changeRoute(path) {
+        this.props.history.push(path);
+    }
+
     render() {
         const { comment, auth, showActions } = this.props
 
         return (
-            <li className="list-group-item">
-                { comment.text }
+            <li className="list-group-item" style={{border: "0px"}}>
+                <div className="input-group" style={{backgroundColor:"rgba(0,0,0,.03)"}}>
+                    <div className="input-group-prepend clickable mb-0" style={{ marginRight: "15px" }} data-toggle="tooltip" data-placement="top" title={comment.user.username}
+                        onClick={this.changeRoute.bind(this, `/profile/${comment.user.username}`)}>
+                        <img className="avatar-navbar" src={comment.user.avatar}></img>
+                    </div>
+                    <div className="comment-item">
+                        <span >{ comment.text }</span>
+                    </div>
+                </div>
             </li>
         )
     }
@@ -50,4 +63,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { deleteComment })(CommentItem)
+export default connect(mapStateToProps, { deleteComment })(withRouter(CommentItem))

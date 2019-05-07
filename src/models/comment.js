@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('../models/user')
 const { Schema } = mongoose
 
 const CommentSchema = new Schema({
@@ -10,5 +11,15 @@ const CommentSchema = new Schema({
     }],
     date: { type: Date, default: Date.now }
 })
+
+CommentSchema.methods.getComplete = async function () {
+    // get user
+    const user = await User.findById(this.user_id)
+
+    if(user)
+        this._doc.user = user.getSimple()
+        
+    return this
+}
 
 module.exports = mongoose.model('Comment', CommentSchema)

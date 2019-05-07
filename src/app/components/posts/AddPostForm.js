@@ -54,7 +54,7 @@ class AddPostForm extends Component {
     }
 
     render() {
-        const { errors } = this.state
+        const { errors, description } = this.state
         const { isAuthenticated, user } = this.props.auth
 
         return (
@@ -69,7 +69,7 @@ class AddPostForm extends Component {
                                             <div className="input-group-prepend mb-0" style={{marginRight: "15px"}}>
                                                 <img className="avatar-navbar" src={user.avatar}></img>
                                             </div>
-                                            <input type='text' name="description" placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
+                                            <input type='text' name="description" value={description} placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
                                                 'is-invalid': errors.description
                                                 })} />
                                             {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
@@ -78,23 +78,21 @@ class AddPostForm extends Component {
                                     </div>
                                 </div>
 
-                                <div className="form-group">
-                                    <div>
-                                        {this.state.image ? <img width="20%" height="20%" src={this.state.image_preview} /> : null}
-                                    </div>
+                                <div className="form-group" style={{marginTop: '1rem'}}>
+                                    { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview} /> : null }
                                 </div>
                                 {errors.media && (<div className="invalid-feedback" style={{ display: "block" }}>{errors.media}</div>)}
                             </div>
 
                             <div className="card-footer" style={{ padding: "0rem", backgroundColor: "#FFF" }}>
                                 <div className="btn-group">
-                                    <label className="btn btn-primary mb-0">
+                                    <label className="btn btn-info mb-0">
                                         <i className="material-icons">image</i> Image
                                             <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={this.onFileChange} hidden></input>
                                     </label>
                                 </div>
                                 <div className="btn-group float-right">
-                                    <button type="submit" className="btn btn-primary mb-0 float-right">
+                                    <button type="submit" className="btn btn-info mb-0 float-right">
                                         <i className="material-icons">accessibility</i> Post
                                     </button>
                                 </div>

@@ -97,7 +97,7 @@ class Login extends Component{
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" className="btn btn-outline-primary btn-block">
+                                            <button type="submit" className="btn btn-info btn-block">
                                                 Log in
                                             </button>
                                         </form>

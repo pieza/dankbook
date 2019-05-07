@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
@@ -9,6 +10,21 @@ import AddCommentForm from './comment/AddCommentForm'
 import CommentList from './comment/CommentList'
 
 class PostItem extends Component {
+    constructor() {
+        super()
+        this.state = {
+            post: {}
+        }
+    }
+
+    componentWillReceiveProps() {
+        if (nextProps.post)
+            this.setState({ post: nextProps.post })
+    }
+
+    changeRoute(path) {
+        this.props.history.push(path);
+    }
 
     onDeleteClick(id) {
         this.props.deletePost(id);
@@ -39,8 +55,8 @@ class PostItem extends Component {
             <div className={ 'col-sm-12 col-md-' + (size ? size : '7') }>
                 <div className="card post-item" >
                     <div className="card-header" style={{backgroundColor: "#fff", borderBottom: "none"}}>
-                        <img className="avatar-navbar" src={post.user.avatar}></img>
-                        <span className="card-title activator grey-text text-darken-4">{ post.user.username }</span>
+                        <img className="avatar-navbar clickable" src={post.user.avatar} onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}></img>
+                        <span className="card-title activator grey-text text-darken-4 clickable" onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}>{ post.user.username }</span>
                         <a className="float-right clickable" data-toggle="dropdown">
                             <i className="material-icons right float-xl">more_vert</i>
                         </a>
@@ -102,4 +118,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost, toggleLike })(PostItem)
+export default connect(mapStateToProps, { deletePost, toggleLike })(withRouter(PostItem))

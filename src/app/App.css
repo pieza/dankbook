@@ -50,7 +50,21 @@ a:not([href]):not([tabindex]).post-action:hover{
 }
 
 a:not([href]):not([tabindex]).post-action.is-active{
-    color: #007bff;
+    color: #17a2b8;
+}
+
+/* Comment item */
+.comment-item {
+    border-radius: 1.5rem;
+    display: inline-block;
+    color: #fff;
+    background-color: #17a2b8;
+    width: 80%;
+    padding: .50rem;
+    padding-left: 1.50rem;
+    padding-right: 1.50rem;
+    margin-bottom: .75rem;
+    margin-top: -.2rem;
 }
 
 /* Fixes */

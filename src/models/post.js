@@ -29,8 +29,10 @@ PostSchema.methods.getComplete = async function () {
     // get comments
     const comments = await Comment.find({ post_id: this.id })
     
-    if(comments)
-        this._doc.comments = comments
+    if(comments){
+        const completes =  comments.map(async comment => comment = await comment.getComplete())
+        this._doc.comments = await Promise.all(completes)
+    }
         
     return this
 }
