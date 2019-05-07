@@ -1,4 +1,4 @@
-const { uploadImage } = require('../utils/image-uploader')
+const { uploadImage, deleteImage } = require('../utils/image-uploader')
 const { IMAGE, VIDEO } = require('../utils/enums/media-types')
 const Post = require('../models/post')
 const Media = require('../models/media')
@@ -43,8 +43,21 @@ service.attachImageUri = async (post_id, url) => {
 
     return await newMedia.save() 
 }
-service.attachVideo = () => {
 
+service.attachVideo = () => {
+    
+}
+
+service.deleteByPostId = async (id) => {
+    const media = await Media.find({ post_id: id })
+    media.map(md => {
+        switch(md.type){
+            case IMAGE:
+                deleteImage(md.url)
+                break
+        }
+        Media.findByIdAndDelete(md._id)
+    })
 }
 
 module.exports = service

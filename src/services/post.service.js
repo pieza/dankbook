@@ -36,15 +36,12 @@ service.create = async (postToCreate, file) => {
 service.delete = async (id) => {
     // delete comments
     const comments = await Comment.find({ post_id: id })
-    comments.map(async comment => {
-        await Comment.findByIdAndDelete(comment._id)
+    comments.map(comment => {
+        Comment.findByIdAndDelete(comment._id)
     })
 
     // delete media
-    const media = await Media.find({ post_id: id })
-    media.map(async md => {
-        await Media.findByIdAndDelete(md._id)
-    })
+    mediaService.deleteByPostId(id)
 
     return await Post.findByIdAndDelete(id)
 }

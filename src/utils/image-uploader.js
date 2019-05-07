@@ -34,4 +34,9 @@ imageUploader.uploadImage = async (image) => {
     }
 }
 
+imageUploader.deleteImage = async (path) => {
+    const name = path.split('/').pop().split('.')[0]
+    return await cloudinary.v2.uploader.destroy(name)
+}
+
 module.exports = imageUploader
