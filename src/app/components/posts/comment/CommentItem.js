@@ -8,8 +8,8 @@ import Loading from '../../shared/Loading';
 
 class CommentItem extends Component {
 
-    onDeleteClick(id) {
-        this.props.deleteComment(id);
+    onDeleteClick(post_id, comment_id) {
+        this.props.deleteComment(post_id, comment_id);
     }
 
     onLikeClick(id) {
@@ -42,6 +42,22 @@ class CommentItem extends Component {
                     </div>
                     <div className="comment-item">
                         <span >{ comment.text }</span>
+                    </div>
+                    <div className="input-group-append clickable mb-0" style={{ marginRight: "15px" }} >
+                        <a className="float-right clickable mb-0" data-toggle="dropdown">
+                            <i className="material-icons right float-xl">more_vert</i>
+                        </a>
+                        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="commentDropdown">
+                            <a className="dropdown-item">
+                                <i className="material-icons left">flag</i> Report
+                            </a>
+                            <div className="dropdown-divider"></div>
+                            { comment.user_id === auth.user.id ? (
+                                <a className="dropdown-item" onClick={this.onDeleteClick.bind(this, comment.post_id, comment._id)}>
+                                    <i className="material-icons left">delete</i> Delete
+                                </a>
+                            ) : null }
+                        </div>
                     </div>
                 </div>
             </li>

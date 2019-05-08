@@ -14,4 +14,9 @@ service.create = async (commentToCreate) => {
     return commentCreated
 }
 
+service.delete = async (id) => {
+    const comment = await Comment.findByIdAndDelete(id)
+    return comment
+}
+
 module.exports = service

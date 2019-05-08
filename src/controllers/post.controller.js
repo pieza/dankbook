@@ -62,4 +62,11 @@ router.delete('/:id', (req, res, next) => {
         .catch( err => next(err))
 })
 
+router.delete('/:post_id/comment/:comment_id', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+    //const post = await Post.findById(req.params.post_id)
+    commentService.delete(req.params.comment_id).then(async comment => { 
+        res.status(200).json(await comment.getComplete())
+    }).catch( err => next(err))
+})
+
 module.exports = router;
