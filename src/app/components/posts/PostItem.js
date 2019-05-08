@@ -10,17 +10,6 @@ import AddCommentForm from './comment/AddCommentForm'
 import CommentList from './comment/CommentList'
 
 class PostItem extends Component {
-    constructor() {
-        super()
-        this.state = {
-            post: {}
-        }
-    }
-
-    componentWillReceiveProps() {
-        if (nextProps.post)
-            this.setState({ post: nextProps.post })
-    }
 
     changeRoute(path) {
         this.props.history.push(path);
@@ -49,10 +38,10 @@ class PostItem extends Component {
     }
 
     render() {
-        const { post, auth, showActions, size } = this.props
+        const { post, auth, showActions, colSize } = this.props
 
         return (
-            <div className={ 'col-sm-12 col-md-' + (size ? size : '7') }>
+            <div className={ 'col-sm-12 col-md-' + (colSize ? colSize : '7') }>
                 <div className="card post-item" >
                     <div className="card-header" style={{backgroundColor: "#fff", borderBottom: "none"}}>
                         <img className="avatar-navbar clickable" src={post.user.avatar} onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}></img>

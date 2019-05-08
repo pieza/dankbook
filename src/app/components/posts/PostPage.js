@@ -16,19 +16,19 @@ class PostPage extends Component {
 
     render() {
         const { isAuthenticated, user } = this.props.auth
-        const { post, loading } = this.props.profile
+        const { post, loading } = this.props.post
 
         let postContent
 
         if (loading)
             postContent = <Loading size="6rem" />
-        else if (profile === null)
+        else if (post === null)
             postContent = <NotFound />
         else
             postContent = (
                 <div className="container">
                     <div className="row">
-                        <PostItem size="12" post={post} />
+                        <PostItem colSize="12" post={post} />
                     </div>
                 </div>
             )
@@ -47,7 +47,7 @@ PostPage.propTypes = {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile: state.profile
+    post: state.post
 })
 
 export default connect(mapStateToProps, { getPost })(PostPage)

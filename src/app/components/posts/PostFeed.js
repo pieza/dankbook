@@ -26,9 +26,7 @@ class PostFeed extends Component {
             postContent = <PostList posts={posts}/>
     
         return (
-            <div className="row">
-                { postContent }
-            </div>
+            postContent 
         )
     }
 

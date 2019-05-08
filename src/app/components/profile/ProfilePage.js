@@ -5,6 +5,7 @@ import { getProfileByUsername } from '../../actions/profile.actions';
 import Unauthorized from '../errors/403-unauthorized'
 import NotFound from '../errors/404-not-found'
 import Loading from '../shared/Loading';
+import PostFeed from '../posts/PostFeed';
 
 class ProfilePage extends Component {
 
@@ -25,9 +26,20 @@ class ProfilePage extends Component {
             profileContent = <NotFound/>
         else
             profileContent = (
-                <div>
-                    
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-3" style={{marginTop: '1rem'}}>
+                            <div className="card" style={{width: "18rem"}}>
+                                <img className="card-img-top rounded-circle" src={ profile.avatar }></img>
+                                <div className="card-body">
+                                    <h5 className="card-title">{ profile.username }</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
             )
         
         return (
