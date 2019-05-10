@@ -1,0 +1,50 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import AddCommentForm from './AddCommentForm';
+import CommentList from './CommentList';
+import LikeButton from '../like/LikeButton';
+
+class CommentsModal extends Component {
+
+    render() {
+        const { post } = this.props
+
+        return (
+            <div className="modal fade" id={post._id} tabIndex="-1" role="dialog">
+                <div className="modal-dialog" role="document" style={{marginTop: "15%"}}>
+                    <div className="modal-content">
+
+                        <div className="modal-header">
+                            <LikeButton post={post} />
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div className="modal-body ">
+                            <div className="overflow-auto" style={{maxHeight:"25.5rem"}}>
+                                <ul className="list-group list-group-flush">
+                                    <CommentList comments={post.comments}/>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="modal-footer" style={{display: "block", justifyContent: "none"}}>
+                            <ul className="list-group list-group-flush">
+                                <AddCommentForm post_id={post._id}/>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+}
+
+CommentsModal.propTypes = {
+    post: PropTypes.object.isRequired
+}
+
+export default CommentsModal

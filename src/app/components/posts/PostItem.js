@@ -8,6 +8,8 @@ import MediaItem from './media/MediaItem'
 import Loading from '../shared/Loading'
 import AddCommentForm from './comment/AddCommentForm'
 import CommentList from './comment/CommentList'
+import CommentsModal from './comment/CommentsModal';
+import LikeButton from './like/LikeButton';
 
 class PostItem extends Component {
 
@@ -17,24 +19,6 @@ class PostItem extends Component {
 
     onDeleteClick(id) {
         this.props.deletePost(id);
-    }
-
-    onLikeClick(id) {
-        this.props.toggleLike(id);
-    }
-
-    onUnlikeClick(id) {
-        this.props.removeLike(id);
-    }
-
-    findUserLike(likes) {
-        const { auth } = this.props;
-        
-        if (likes.filter(like => like._id === auth.user.id).length > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     render() {
@@ -69,23 +53,21 @@ class PostItem extends Component {
                         </li>
                     </ul>
                     <div className="card-body align-items-center justify-content-center" style={{padding: ".75rem"}}>
-                        <a onClick={this.onLikeClick.bind(this, post._id)}
-                            className={classnames('post-action clickable', {
-                                'is-active': this.findUserLike(post.likes)
-                            })}>
-                            <i className="material-icons left">thumb_up</i> ({post.likes.length}) like
-                        </a>
-                        
-                        <a className=" clickable float-right post-action"><i className="material-icons left">add_comment</i> ({post.comments.length}) comment</a>
+                        <LikeButton post={post}/>
+
+                        <a className=" clickable float-right post-action" onClick={()=>{$('#' + post._id).modal()}}><i className="material-icons left">add_comment</i> ({post.comments.length}) comment</a>
+                        <CommentsModal post={post}/>
                     </div>
 
                     {/* Comments */}
+                    {/*
                     <div className="card-footer">
                         <ul className="list-group list-group-flush">
                             { post.comments ? <CommentList comments={post.comments}/> : null }
                             <AddCommentForm post_id={post._id}/>
                         </ul>
                     </div>
+                    */}
                 </div>
             </div>
         )
@@ -94,17 +76,17 @@ class PostItem extends Component {
 
 PostItem.defaultProps = {
     showActions: true
-};
+}
 
 PostItem.propTypes = {
     deletePost: PropTypes.func.isRequired,
     toggleLike: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
-};
+}
 
 const mapStateToProps = state => ({
     auth: state.auth
-});
+})
 
-export default connect(mapStateToProps, { deletePost, toggleLike })(withRouter(PostItem))
+export default connect(mapStateToProps, { deletePost })(withRouter(PostItem))
