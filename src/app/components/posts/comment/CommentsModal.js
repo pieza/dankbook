@@ -21,10 +21,13 @@ class CommentsModal extends Component {
                             </button>
                         </div>
 
-                        <div className="modal-body ">
-                            <div className="overflow-auto" style={{maxHeight:"25.5rem"}}>
+                        <div className="modal-body pt-0">
+                            <div className="overflow-auto pt-3" style={{maxHeight:"25.5rem"}}>
                                 <ul className="list-group list-group-flush">
-                                    <CommentList comments={post.comments}/>
+                                    { post.comments.lenght > 0 ? <CommentList comments={post.comments}/> 
+                                        :  <li className="list-group-item" style={{border: "0px"}}>
+                                            <h4 class="text-center" style={{color: "grey"}}>No comments.</h4>
+                                        </li> }
                                 </ul>
                             </div>
                         </div>

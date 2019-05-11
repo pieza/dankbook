@@ -55,10 +55,19 @@ class Navbar extends Component {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
                     <div className="container-fluid">
                         <Link to="/" className="navbar-brand">DankBook</Link>
+
+                        { isAuthenticated ? (
+                            <div className="text-center w-60">
+                                <form className="form-inline">
+                                    <input className="form-control w-100" type="search" placeholder="Search" aria-label="Search"/>
+                                </form>
+                            </div>
+
+                        ) : null }
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="collapse navbar-collapse w-100 order-3 dual-collapse" id="menu">
+                        <div className="collapse navbar-collapse order-3 dual-collapse" id="menu">
                             { isAuthenticated ? authLinks : guestLinks }
                         </div>
                     </div>

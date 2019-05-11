@@ -56,9 +56,11 @@ service.toggleLike = async (post_id, user_id) => {
     if(!post)
         throw new Error('Post not found')
 
+    const likeIndex = post.likes.findIndex(l => { return l._id == user.id })
+
     // check if user already liked the post
-    if(post.likes.filter(like => like._id.toString() === user.id).length > 0)
-        post.likes.splice(post.likes.indexOf({_id: user.id}), 1)
+    if(likeIndex >= 0)
+        post.likes.splice(likeIndex, 1)
     else
         post.likes.push(user.id)
     

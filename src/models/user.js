@@ -7,6 +7,9 @@ const UserSchema = new Schema({
     email: { type: String, require: true },
     password: { type: String, require: true },
     avatar: { type: String },
+    following: [{
+        user_id: { type: Schema.Types.ObjectId, ref: 'User', require: true }
+    }],
     date: { type: Date, default: Date.now }
 })
 
