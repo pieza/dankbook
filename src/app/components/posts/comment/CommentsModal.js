@@ -11,7 +11,7 @@ class CommentsModal extends Component {
 
         return (
             <div className="modal fade" id={post._id} tabIndex="-1" role="dialog">
-                <div className="modal-dialog" role="document" style={{marginTop: "15%"}}>
+                <div className="modal-dialog" role="document" style={{marginTop: "17.5rem"}}>
                     <div className="modal-content">
 
                         <div className="modal-header">
