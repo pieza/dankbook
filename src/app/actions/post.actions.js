@@ -68,20 +68,21 @@ export const getPost = id => dispatch => {
 
 // Delete Post
 export const deletePost = id => dispatch => {
-    axios
-        .delete(`${API_PATH}/posts/${id}`)
-        .then(res =>
-            dispatch({
-                type: DELETE_POST,
-                payload: id
-            })
-        )
-        .catch(err =>
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            })
-        )
+    if(window.confirm('Are you sure? This can NOT be undone!'))
+        axios
+            .delete(`${API_PATH}/posts/${id}`)
+            .then(res =>
+                dispatch({
+                    type: DELETE_POST,
+                    payload: id
+                })
+            )
+            .catch(err =>
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                })
+            )
 }
 
 // Add Like
@@ -122,20 +123,21 @@ export const addComment = (postId, commentData) => dispatch => {
 
 // Delete Comment
 export const deleteComment = (postId, commentId) => dispatch => {
-    axios
-        .delete(`${API_PATH}/posts/${postId}/comment/${commentId}`)
-        .then(res =>
-            dispatch({
-                type: GET_POST,
-                payload: res.data
-            })
-        )
-        .catch(err =>
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data.errors
-            })
-        )
+    if(window.confirm('Are you sure? This can NOT be undone!'))
+        axios
+            .delete(`${API_PATH}/posts/${postId}/comment/${commentId}`)
+            .then(res =>
+                dispatch({
+                    type: GET_POST,
+                    payload: res.data
+                })
+            )
+            .catch(err =>
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data.errors
+                })
+            )
 }
 
 // Set loading state

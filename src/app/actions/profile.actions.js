@@ -38,8 +38,8 @@ export const getProfileByUsername = username => dispatch => {
 				type: GET_PROFILE,
 				payload: null
 			})
-		);
-};
+		)
+}
 
 // Get all profiles
 export const getProfiles = () => dispatch => {

@@ -80,7 +80,6 @@ PostItem.defaultProps = {
 
 PostItem.propTypes = {
     deletePost: PropTypes.func.isRequired,
-    toggleLike: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
 }

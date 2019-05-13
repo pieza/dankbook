@@ -67,6 +67,15 @@ a:not([href]):not([tabindex]).post-action.is-active{
     margin-top: -.2rem;
 }
 
+.username-link {
+    cursor: pointer;
+    color: black;
+}
+
+.username-link:hover {
+    text-decoration: underline;
+}
+
 /* Fixes */
 img.avatar-navbar {
     background-color: azure;

@@ -27,6 +27,7 @@ class CommentItem extends Component {
     }
 
     changeRoute(path) {
+        $('#' + this.props.comment.post_id).modal('hide')
         this.props.history.push(path);
     }
 
@@ -35,12 +36,14 @@ class CommentItem extends Component {
 
         return (
             <li className="list-group-item" style={{border: "0px"}}>
-                <div className="input-group" style={{backgroundColor:"rgba(0,0,0,.03)"}}>
+                <div className="input-group">
                     <div className="input-group-prepend clickable mb-0" style={{ marginRight: "15px" }} data-toggle="tooltip" data-placement="top" title={comment.user.username}
                         onClick={this.changeRoute.bind(this, `/profile/${comment.user.username}`)}>
                         <img className="avatar-navbar" src={comment.user.avatar}></img>
                     </div>
                     <div className="comment-item">
+                        <span className="username-link" onClick={this.changeRoute.bind(this, `/profile/${comment.user.username}`)}> { comment.user.username }</span>
+                        <br/>
                         <span >{ comment.text }</span>
                     </div>
                     <div className="input-group-append clickable mb-0" style={{ marginRight: "15px" }} >

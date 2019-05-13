@@ -23,9 +23,9 @@ router.post('/follow/:id', passport.authenticate('jwt', {session: false}), async
     if(!userToFollow)
         return res.status(404).json({errors:{ user: "User doesn't exist" }})
 
+    // check if user already follow the user
     const followIndex = user.following.findIndex(f => { return f._id == userToFollow.id })
 
-    // check if user already liked the post
     if(followIndex >= 0)
         user.following.splice(followIndex, 1)
     else
