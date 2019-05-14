@@ -29,7 +29,7 @@ class PostItem extends Component {
                 <div className="card post-item" >
                     <div className="card-header" style={{backgroundColor: "#fff", borderBottom: "none"}}>
                         <img className="avatar-navbar clickable" src={post.user.avatar} onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}></img>
-                        <span className="card-title activator grey-text text-darken-4 clickable" onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}>{ post.user.username }</span>
+                        <span className="card-title activator grey-text text-darken-4 username-link" onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}>{ post.user.username }</span>
                         <a className="float-right clickable" data-toggle="dropdown">
                             <i className="material-icons right float-xl">more_vert</i>
                         </a>
