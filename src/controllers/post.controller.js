@@ -63,9 +63,10 @@ router.delete('/:id', (req, res, next) => {
 })
 
 router.delete('/:post_id/comment/:comment_id', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
-    //const post = await Post.findById(req.params.post_id)
+    const post = await Post.findById(req.params.post_id)
+
     commentService.delete(req.params.comment_id).then(async comment => { 
-        res.status(200).json(await comment.getComplete())
+        res.status(200).json(await post.getComplete())
     }).catch( err => next(err))
 })
 

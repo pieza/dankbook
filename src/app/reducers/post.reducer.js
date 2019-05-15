@@ -1,4 +1,4 @@
-import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, TOGGLE_LIKE } from '../actions/types'
+import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, TOGGLE_LIKE, TOGGLE_COMMENT } from '../actions/types'
 
 const initialState = {
     posts: [],
@@ -42,6 +42,12 @@ export default function (state = initialState, action) {
                 ...state,
                 posts: state.posts.map(_post => _post._id === action.payload.id 
                     ? { ..._post, likes: action.payload.likes } : _post)
+            }
+        case TOGGLE_COMMENT:
+            return {
+                ...state,
+                posts: state.posts.map(_post => _post._id === action.payload._id 
+                    ? action.payload : _post)
             }
         default:
             return state

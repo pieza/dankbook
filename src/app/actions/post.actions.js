@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST, TOGGLE_LIKE } from './types';
+import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST, TOGGLE_LIKE, TOGGLE_COMMENT } from './types';
 
 import { API_PATH } from '../constants/environment'
 
@@ -109,7 +109,7 @@ export const addComment = (postId, commentData) => dispatch => {
         .post(`${API_PATH}/posts/comment/${postId}`, commentData)
         .then(res =>
             dispatch({
-                type: GET_POST,
+                type: TOGGLE_COMMENT,
                 payload: res.data
             })
         )
@@ -128,7 +128,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
             .delete(`${API_PATH}/posts/${postId}/comment/${commentId}`)
             .then(res =>
                 dispatch({
-                    type: GET_POST,
+                    type: TOGGLE_COMMENT,
                     payload: res.data
                 })
             )

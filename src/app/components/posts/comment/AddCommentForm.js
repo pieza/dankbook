@@ -56,7 +56,7 @@ class AddCommentForm extends Component {
                                 <div className="input-group-prepend mb-0" style={{ marginRight: "15px" }}>
                                     <img className="avatar-navbar" src={user.avatar}></img>
                                 </div>
-                                <input type='text' name="text" placeholder="Type a comment..." onChange={this.onChange} className={classnames('form-control', {
+                                <input type='text' name="text" value={this.state.text} placeholder="Type a comment..." onChange={this.onChange} className={classnames('form-control', {
                                     'is-invalid': errors.text
                                 })} required/>
                                 <div className="input-group-append">
