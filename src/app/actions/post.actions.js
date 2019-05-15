@@ -4,7 +4,6 @@ import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, 
 
 import { API_PATH } from '../constants/environment'
 
-// Add Post
 export const addPost = postData => dispatch => {
     dispatch(clearErrors())
     const config = {
@@ -28,7 +27,6 @@ export const addPost = postData => dispatch => {
         )
 }
 
-// Get Posts
 export const getPosts = () => dispatch => {
     dispatch(setPostLoading());
     axios
@@ -47,7 +45,24 @@ export const getPosts = () => dispatch => {
         )
 }
 
-// Get Post
+export const getPostsByUserId = user_id => dispatch => {
+    dispatch(setPostLoading());
+    axios
+        .get(`${API_PATH}/posts/user/${user_id}`)
+        .then(res =>
+            dispatch({
+                type: GET_POSTS,
+                payload: res.data
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: GET_POSTS,
+                payload: null
+            })
+        )
+}
+
 export const getPost = id => dispatch => {
     dispatch(setPostLoading());
     axios

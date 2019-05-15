@@ -16,6 +16,15 @@ router.get('/', async (req, res, next) => {
     }).catch(err => next(err))   
 })
 
+router.get('/user/:user_id', async (req, res, next) => {
+    postService.findAll({user_id: req.params.user_id}).then((posts) => {
+        if(posts)
+            return res.json(posts)
+        else 
+            return  res.status(404).json({ nopostsfound: 'No posts found' })
+    }).catch(err => next(err))   
+})
+
 router.get('/:id', (req, res) => {
     Post.findById(req.params.id)
         .then(async post => res.json(await post.getComplete()))

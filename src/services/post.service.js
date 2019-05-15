@@ -17,6 +17,16 @@ service.findAll = async () => {
     return await Promise.all(results)
 }
 
+service.findAll = async (filters) => {
+    const postList = await Post.find(filters).sort({ date: -1 })
+
+    const results = postList.map(async post => {
+        return await post.getComplete()
+    })
+
+    return await Promise.all(results)
+}
+
 service.create = async (postToCreate, file) => {
     const newPost = new Post({
         user_id: postToCreate.user_id,
