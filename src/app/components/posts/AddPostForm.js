@@ -41,7 +41,7 @@ class AddPostForm extends Component {
         const { user } = this.props.auth
         const formData = new FormData()
 
-        formData.append('user_id', user.id)
+        formData.append('user_id', user._id)
         formData.append('description', this.state.description)
 
         if (this.state.image) {

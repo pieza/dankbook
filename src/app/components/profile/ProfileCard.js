@@ -37,7 +37,7 @@ class ProfileCard extends Component {
                         </li>
 
                         {/* Follow */}
-                        { profile._id != user.id ? 
+                        { profile._id != user._id ? 
                             <li className="list-group-item">
                                 <button type="button" className="btn btn-info mb-0" onClick={this.onFollowClick.bind(this)}>
                                     <i className="material-icons">accessibility</i> Follow
@@ -46,10 +46,17 @@ class ProfileCard extends Component {
                         : null}
 
                         {/* Badges */}
-                        <li className="list-group-item">
-                            <span className="badge badge-pill badge-primary">Primary</span>
-                            <span className="badge badge-pill badge-danger">Primary</span>
-                        </li>
+                        { profile.badges ? 
+                            <li className="list-group-item">
+                                {profile.badges.map(badge => {
+                                        return (
+                                            <span className={ 'badge badge-pill badge-' + badge.color }>{ badge.description }</span>
+                                        )
+                                    }
+                                )}
+                            </li>
+                        : null }
+
                     </ul>
                     
                 </div>

@@ -45,6 +45,11 @@ if (token) {
 }
 
 class App extends Component {
+
+    componentDidCatch(err){
+        alert(err);
+    }
+
     render() {
         return (
             <Context.Provider value={{ _loading: false }}>

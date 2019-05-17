@@ -29,7 +29,6 @@ UserSchema.methods.getSimple = function () {
     return { 
         _id: this._id,
         username: this.username, 
-        //email: this.email, 
         avatar: this.avatar 
     }
 }
@@ -48,6 +47,7 @@ UserSchema.methods.getComplete = async function () {
         username: this.username, 
         following: this.following,
         followers: followers,
+        badges: this.badges,
         avatar: this.avatar,
         date: this.date
     }
