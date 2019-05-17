@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
 import { getProfileByUsername } from '../../actions/profile.actions';
 import Unauthorized from '../errors/403-unauthorized'
 import NotFound from '../errors/404-not-found'
@@ -29,7 +30,7 @@ class ProfilePage extends Component {
             profileContent = (
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3" style={{marginTop: '1rem', position: 'sticky'}}>
+                        <div className="col-md-3 sticky-top">
                             <ProfileCard profile={profile}/>
                         </div>
                         <div className="col-md-6">

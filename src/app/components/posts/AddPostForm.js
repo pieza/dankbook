@@ -58,48 +58,46 @@ class AddPostForm extends Component {
         const { isAuthenticated, user } = this.props.auth
 
         return (
-            <div className="row">
-                <div className="col-sm-12 col-md-7">
-                    <div className="card post-item">
-                        <form onSubmit={this.onSubmit}>
-                            <div className="card-body">
-                                <div className="form-row">
-                                    <div className="form-group col-sm-12 mb-0">
-                                        <div className="input-group">
-                                            <div className="input-group-prepend mb-0" style={{marginRight: "15px"}}>
-                                                <img className="avatar-navbar" src={user.avatar}></img>
-                                            </div>
-                                            <input type='text' name="description" value={description} placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
-                                                'is-invalid': errors.description
-                                                })} />
-                                            {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
+            <div className="col-sm-12 col-md-7">
+                <div className="card post-item">
+                    <form onSubmit={this.onSubmit}>
+                        <div className="card-body">
+                            <div className="form-row">
+                                <div className="form-group col-sm-12 mb-0">
+                                    <div className="input-group">
+                                        <div className="input-group-prepend mb-0" style={{marginRight: "15px"}}>
+                                            <img className="avatar-navbar" src={user.avatar}></img>
                                         </div>
-                                        
+                                        <input type='text' name="description" value={description} placeholder="Type something..." onChange={this.onChange} className={classnames('form-control', {
+                                            'is-invalid': errors.description
+                                            })} />
+                                        {errors.description && (<div className="invalid-feedback">{errors.description}</div>)}
                                     </div>
-                                </div>
-
-                                <div className="form-group" style={{marginTop: '1rem'}}>
-                                    { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview} /> : null }
-                                </div>
-                                {errors.media && (<div className="invalid-feedback" style={{ display: "block" }}>{errors.media}</div>)}
-                            </div>
-
-                            <div className="card-footer" style={{ padding: "0rem", backgroundColor: "#FFF" }}>
-                                <div className="btn-group">
-                                    <label className="btn btn-info mb-0">
-                                        <i className="material-icons">image</i> Image
-                                            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={this.onFileChange} hidden></input>
-                                    </label>
-                                </div>
-                                <div className="btn-group float-right">
-                                    <button type="submit" className="btn btn-info mb-0 float-right">
-                                        <i className="material-icons">accessibility</i> Post
-                                    </button>
+                                    
                                 </div>
                             </div>
 
-                        </form>
-                    </div>
+                            <div className="form-group" style={{marginTop: '1rem'}}>
+                                { this.state.image ? <img width="20%" height="20%" src={this.state.image_preview} /> : null }
+                            </div>
+                            {errors.media && (<div className="invalid-feedback" style={{ display: "block" }}>{errors.media}</div>)}
+                        </div>
+
+                        <div className="card-footer" style={{ padding: "0rem", backgroundColor: "#FFF" }}>
+                            <div className="btn-group">
+                                <label className="btn btn-info mb-0">
+                                    <i className="material-icons">image</i> Image
+                                        <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={this.onFileChange} hidden></input>
+                                </label>
+                            </div>
+                            <div className="btn-group float-right">
+                                <button type="submit" className="btn btn-info mb-0 float-right">
+                                    <i className="material-icons">accessibility</i> Post
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         )

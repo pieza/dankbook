@@ -74,7 +74,6 @@ router.post('/signup', async (req, res, next) => {
             s: '200',
             r: 'pg',
             d: 'robohash',
-            
         })
     
         // create user
@@ -86,11 +85,7 @@ router.post('/signup', async (req, res, next) => {
         newUser.password = newUser.encryptPassword(req.body.password)
     
         // save user
-        newUser.save().then(user => res.json({
-            id: user.id,
-            username: user.username,
-            avatar: user.avatar
-        }))
+        newUser.save().then(async user => res.json(await user.getSimple()))
 
     } catch(err) {
         next(err)

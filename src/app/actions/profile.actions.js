@@ -43,7 +43,7 @@ export const getProfileByUsername = username => dispatch => {
 
 // Get all profiles
 export const getProfiles = () => dispatch => {
-	dispatch(setProfileLoading());
+	dispatch(setProfileLoading())
 	axios
 		.get('/api/profile/all')
 		.then(res =>
@@ -57,8 +57,27 @@ export const getProfiles = () => dispatch => {
 				type: GET_PROFILES,
 				payload: null
 			})
-		);
-};
+		)
+}
+
+// Follow user
+export const toggleFollow = id => dispatch => {
+	//dispatch(setProfileLoading())
+	axios
+		.post(`${API_PATH}/profile/follow/${id}`)
+		.then(res =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: res.data
+			})
+		)
+		.catch(err =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: null
+			})
+		)
+}
 
 // Delete account & profile
 export const deleteAccount = () => dispatch => {

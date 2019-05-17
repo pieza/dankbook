@@ -9,9 +9,8 @@ class Newsfeed extends Component {
         return (
             <div className="container">
                 <AddPostForm />
-                <div className="row">
-                    <PostFeed />
-                </div>
+                <PostFeed />
+
                 
             </div>
         )

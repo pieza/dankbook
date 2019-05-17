@@ -12,7 +12,7 @@ const UserSchema = new Schema({
         color: { type: String }
     }],
     following: [{
-        user_id: { type: Schema.Types.ObjectId, ref: 'User', require: true }
+        user_id: { type: Schema.Types.ObjectId, ref: 'User' }
     }],
     date: { type: Date, default: Date.now }
 })
@@ -27,10 +27,29 @@ UserSchema.methods.comparePassword = function (password) {
 
 UserSchema.methods.getSimple = function () {
     return { 
-        id: this.id,
+        _id: this._id,
         username: this.username, 
         //email: this.email, 
         avatar: this.avatar 
+    }
+}
+
+UserSchema.methods.getComplete = async function () {
+    const userFollowers = await mongoose.model('User', UserSchema).find({ following: [{_id: this._id}] })
+
+    const followers = []
+
+    userFollowers.forEach(u => {
+        followers.push({_id: u._id})
+    })
+
+    return { 
+        _id: this._id,
+        username: this.username, 
+        following: this.following,
+        followers: followers,
+        avatar: this.avatar,
+        date: this.date
     }
 }
 

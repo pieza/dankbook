@@ -10,30 +10,34 @@ router.get('/:username', async (req, res, next) => {
         return res.status(404).json({errors:{ username: "User doesn't exist" }})
 
     delete user.password
-    return res.status(200).json(user)
+    return res.status(200).json(await user.getComplete())
 })
 
 router.post('/follow/:id', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
-    const user = await User.findById(req.user.id)
-    const userToFollow = await User.findById(req.params.id)
+    try {
+        const user = await User.findById(req.user._id)
+        const userToFollow = await User.findById(req.params.id)
 
-    if(!user)
-        return res.status(404).json({errors:{ user: "Authentication error" }})
+        if(!user)
+            return res.status(401).json({errors:{ user: "Authentication error" }})
 
-    if(!userToFollow)
-        return res.status(404).json({errors:{ user: "User doesn't exist" }})
+        if(!userToFollow)
+            return res.status(404).json({errors:{ user: "User doesn't exist" }})
 
-    // check if user already follow the user
-    const followIndex = user.following.findIndex(f => { return f._id == userToFollow.id })
+        // check if user already follow the user
+        const followIndex = user.following.findIndex(f => { return f._id + '' == userToFollow._id })
 
-    if(followIndex >= 0)
-        user.following.splice(followIndex, 1)
-    else
-        user.following.push(user.id)
+        if(followIndex >= 0)
+            user.following.splice(followIndex, 1)
+        else
+            user.following.push(userToFollow._id)
 
-    const userUpdated = await User.update(user);
+        await user.save()
 
-    return res.status(200).json(userUpdated)
+        return res.status(200).json(await userToFollow.getComplete())
+    } catch(err) {
+        next(err)
+    }
 })
 
 module.exports = router;

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getProfileByUsername } from '../../actions/profile.actions';
-import Unauthorized from '../errors/403-unauthorized'
-import NotFound from '../errors/404-not-found'
-import Loading from '../shared/Loading';
-import PostFeed from '../posts/PostFeed';
+import { toggleFollow  } from '../../actions/profile.actions';
 
 class ProfileCard extends Component {
+
+    onFollowClick(){
+        const { profile } = this.props.profile
+        this.props.toggleFollow(profile._id)
+    }
 
     render() {
         const { user } = this.props.auth
@@ -38,7 +39,7 @@ class ProfileCard extends Component {
                         {/* Follow */}
                         { profile._id != user.id ? 
                             <li className="list-group-item">
-                                <button type="submit" className="btn btn-info mb-0">
+                                <button type="button" className="btn btn-info mb-0" onClick={this.onFollowClick.bind(this)}>
                                     <i className="material-icons">accessibility</i> Follow
                                 </button>
                             </li>
@@ -59,6 +60,7 @@ class ProfileCard extends Component {
 }
 
 ProfileCard.propTypes = {
+    toggleFollow: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired
 }
@@ -68,4 +70,4 @@ const mapStateToProps = state => ({
     profile: state.profile
 })
 
-export default connect(mapStateToProps)(ProfileCard)
+export default connect(mapStateToProps, { toggleFollow })(ProfileCard)

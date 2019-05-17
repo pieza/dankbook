@@ -102,6 +102,11 @@ img.avatar-navbar {
     vertical-align: bottom;
 }
 
+.sticky-top {
+    height: 10px;
+    top: 5rem;
+}
+
 /* Absolute Center Spinner */
 .loading {
     position: fixed;
