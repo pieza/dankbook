@@ -37,7 +37,7 @@ class AddCommentForm extends Component {
         const { user } = this.props.auth
 
         this.props.addComment(this.props.post_id, {
-            user_id: user.id,
+            user_id: user._id,
             text: this.state.text
         })
         this.setState({ text: '' })

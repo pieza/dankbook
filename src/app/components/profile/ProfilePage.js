@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import classnames from 'classnames'
 import { getProfileByUsername } from '../../actions/profile.actions';
 import Unauthorized from '../errors/403-unauthorized'
 import NotFound from '../errors/404-not-found'
@@ -12,8 +11,21 @@ import ProfileCard from './ProfileCard';
 class ProfilePage extends Component {
 
     componentDidMount() {
-        if (this.props.match.params.id) 
+        this.loadUser()
+        this.unlisten = this.props.history.listen((location, action) => {
+            this.loadUser(location.pathname.split('/').reverse()[0])
+        })
+    }
+
+    loadUser(key) {
+        if(key)
+            this.props.getProfileByUsername(key)
+        else if (this.props.match.params.id) 
             this.props.getProfileByUsername(this.props.match.params.id)
+    }
+
+    componentWillUnmount() {
+        this.unlisten()
     }
 
     render() {

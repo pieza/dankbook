@@ -14,7 +14,7 @@ class LikeButton extends Component {
     findUserLike(likes) {
         const { auth } = this.props;
 
-        if (likes.filter(like => like._id === auth.user.id).length > 0) {
+        if (likes.filter(like => like._id === auth.user._id).length > 0) {
             return true;
         } else {
             return false;

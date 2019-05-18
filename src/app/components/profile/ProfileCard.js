@@ -10,9 +10,20 @@ class ProfileCard extends Component {
         this.props.toggleFollow(profile._id)
     }
 
+    findUserFollow() {
+        const { profile } = this.props.profile
+        const { user } = this.props.auth
+        
+        if (profile.followers && profile.followers.filter(follower => { return follower._id+'' == user._id+''}).length > 0) 
+            return true
+        else 
+            return false      
+    }
+
     render() {
         const { user } = this.props.auth
         const { profile, loading } = this.props.profile
+        const isFollowing = this.findUserFollow()
 
         return (
             <div className="card">
@@ -39,8 +50,8 @@ class ProfileCard extends Component {
                         {/* Follow */}
                         { profile._id != user._id ? 
                             <li className="list-group-item">
-                                <button type="button" className="btn btn-info mb-0" onClick={this.onFollowClick.bind(this)}>
-                                    <i className="material-icons">accessibility</i> Follow
+                                <button type="button" className={'btn mb-0 btn-' + (isFollowing ? 'danger' : 'info') } onClick={this.onFollowClick.bind(this)}>
+                                    <i className="material-icons">accessibility</i> { isFollowing ? 'UnFollow' : 'Follow' }
                                 </button>
                             </li>
                         : null}
@@ -48,9 +59,9 @@ class ProfileCard extends Component {
                         {/* Badges */}
                         { profile.badges ? 
                             <li className="list-group-item">
-                                {profile.badges.map(badge => {
+                                {profile.badges.map((badge, index) => {
                                         return (
-                                            <span className={ 'badge badge-pill badge-' + badge.color }>{ badge.description }</span>
+                                            <span key={index} className={ 'badge badge-pill badge-' + badge.color }>{ badge.description }</span>
                                         )
                                     }
                                 )}

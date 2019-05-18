@@ -29,7 +29,7 @@ UserSchema.methods.getSimple = function () {
     return { 
         _id: this._id,
         username: this.username, 
-        avatar: this.avatar 
+        avatar: this.avatar
     }
 }
 
