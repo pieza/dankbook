@@ -45,8 +45,8 @@ class ProfilePage extends Component {
                         <div className="col-md-3 sticky-top">
                             <ProfileCard profile={profile}/>
                         </div>
-                        <div className="col-md-6">
-                            <PostFeed userId={profile._id} colSize={12}/>
+                        <div className="col-md-7">
+                            <PostFeed userId={profile._id}/>
                         </div>
                     </div>
                 </div>

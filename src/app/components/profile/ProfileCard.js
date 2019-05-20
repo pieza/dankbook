@@ -26,7 +26,7 @@ class ProfileCard extends Component {
         const isFollowing = this.findUserFollow()
 
         return (
-            <div className="card">
+            <div className="card post-item">
                 <img className="card-img-top rounded-circle" src={ profile.avatar }></img>
                 <div className="card-body">
                     <ul className="list-group list-group-flush">

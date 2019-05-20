@@ -25,7 +25,7 @@ class PostItem extends Component {
         const { post, auth, showActions, colSize } = this.props
 
         return (
-            <div className={ 'col-sm-12 col-md-' + (colSize ? colSize : '7') }>
+            <div className={ ''/*'col-sm-12 col-md-' + (colSize ? colSize : '7') */}>
                 <div className="card post-item" >
                     <div className="card-header" style={{backgroundColor: "#fff", borderBottom: "none"}}>
                         <img className="avatar-navbar clickable" src={post.user.avatar} onClick={this.changeRoute.bind(this, `/profile/${post.user.username}`)}></img>

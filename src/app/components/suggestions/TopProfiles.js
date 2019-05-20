@@ -2,16 +2,20 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import Landing from './Landing'
-import Newsfeed from './Newsfeed'
-
 class TopProfiles extends Component {
 
     render() {
-        const { isAuthenticated, user } = this.props.auth
+        const { user } = this.props.auth
 
         return (
-            isAuthenticated ? <Newsfeed /> : <Landing /> 
+            <div className="">
+                <div className="card post-item">
+                    <div className="card-body">
+                        asd
+                    </div>
+                </div>
+            </div>
+
         )
     }
 }

@@ -58,7 +58,7 @@ class AddPostForm extends Component {
         const { isAuthenticated, user } = this.props.auth
 
         return (
-            <div className="col-sm-12 col-md-7">
+            <div className="">
                 <div className="card post-item">
                     <form onSubmit={this.onSubmit}>
                         <div className="card-body">
