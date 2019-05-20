@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER } from './types';
-import { API_PATH } from '../constants/environment'
+import { API_PATH } from '../../constants/environment'
+
+import { getParams } from '../../utils/query-params'
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -42,10 +44,10 @@ export const getProfileByUsername = username => dispatch => {
 }
 
 // Get all profiles
-export const getProfiles = () => dispatch => {
+export const getProfiles = (filters) => dispatch => {
 	dispatch(setProfileLoading())
 	axios
-		.get('/api/profile/all')
+		.get(`${API_PATH}/profile${getParams(filters)}`)
 		.then(res =>
 			dispatch({
 				type: GET_PROFILES,

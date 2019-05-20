@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 import { connect } from 'react-redux';
-import { deleteComment } from '../../../actions/post.actions';
+import { deleteComment } from '../../../redux/actions/post.actions';
 import Loading from '../../shared/Loading';
 
 class CommentItem extends Component {

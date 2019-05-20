@@ -34,11 +34,13 @@ router.post('/login', async (req, res, next) => {
         
         // user match
         const payload = user.getSimple()
-
-        jtw.sign(payload, 
+        
+        jtw.sign(payload,
             process.env.SECRET_JWT_KEY, 
             { expiresIn: 3600 }, 
             (err, token) => {
+                if(err)
+                    next(err)
                 res.json({
                     success: true,
                     token: 'Bearer ' + token

@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { toggleLike } from '../../../actions/post.actions'
+import { toggleLike } from '../../../redux/actions/post.actions'
 
 class LikeButton extends Component {
 

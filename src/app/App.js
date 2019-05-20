@@ -6,7 +6,7 @@ import store from './store'
 
 import setAuthToken from './utils/auth-token'
 
-import { setCurrentUser, logout } from './actions/auth.actions'
+import { setCurrentUser, logout } from './redux/actions/auth.actions'
 import { getCookie } from './utils/cookie-helper'
 
 import { COOKIE_JWT } from './constants/environment'
@@ -20,6 +20,7 @@ import NotFound from './components/errors/404-not-found'
 import { Context } from './Context'
 import './App.css';
 import PostPage from './components/posts/PostPage';
+import ProfilesResults from './components/profile/ProfilesResults';
 
 // check for token
 const token = getCookie(COOKIE_JWT)
@@ -65,6 +66,7 @@ class App extends Component {
                             <Route path="/signup" component={Signup} />
                             <Route path="/profile/:id" component={ProfilePage} />
                             <Route path="/post/:id" component={PostPage} />
+                            <Route path="/search/profiles" component={ProfilesResults} />
 
                             {/* Default */}
                             <Route component={NotFound} />

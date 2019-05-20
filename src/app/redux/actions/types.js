@@ -13,3 +13,4 @@ export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const TOGGLE_LIKE = 'TOGGLE_LIKE'
 export const TOGGLE_COMMENT = 'TOGGLE_COMMENT'
+export const CLEAR_POSTS = "CLEAR_POSTS"

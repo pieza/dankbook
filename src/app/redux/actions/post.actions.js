@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST, TOGGLE_LIKE, TOGGLE_COMMENT } from './types';
+import { ADD_POST, GET_ERRORS, CLEAR_ERRORS, GET_POSTS, GET_POST, POST_LOADING, DELETE_POST, TOGGLE_LIKE, TOGGLE_COMMENT, CLEAR_POSTS } from './types';
 
-import { API_PATH } from '../constants/environment'
+import { API_PATH } from '../../constants/environment'
 
 export const addPost = postData => dispatch => {
     dispatch(clearErrors())
@@ -28,7 +28,8 @@ export const addPost = postData => dispatch => {
 }
 
 export const getPosts = () => dispatch => {
-    dispatch(setPostLoading());
+    dispatch(clearPosts())
+    dispatch(setPostLoading())
     axios
         .get(API_PATH + '/posts')
         .then(res =>
@@ -46,7 +47,8 @@ export const getPosts = () => dispatch => {
 }
 
 export const getPostsByUserId = user_id => dispatch => {
-    dispatch(setPostLoading());
+    dispatch(clearPosts())
+    dispatch(setPostLoading())
     axios
         .get(`${API_PATH}/posts/user/${user_id}`)
         .then(res =>
@@ -159,6 +161,12 @@ export const deleteComment = (postId, commentId) => dispatch => {
 export const setPostLoading = () => {
     return {
         type: POST_LOADING
+    }
+}
+
+export const clearPosts = () => {
+    return {
+        type: CLEAR_POSTS
     }
 }
 

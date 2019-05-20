@@ -8,14 +8,11 @@ class TopProfiles extends Component {
         const { user } = this.props.auth
 
         return (
-            <div className="">
-                <div className="card post-item">
-                    <div className="card-body">
-                        asd
-                    </div>
+            <div className="card post-item">
+                <div className="card-body">
+                    <p>Top profiles</p>    
                 </div>
             </div>
-
         )
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { getPosts, getPostsByUserId } from '../../actions/post.actions'
+import { getPosts, getPostsByUserId } from '../../redux/actions/post.actions'
 import PostList from './PostList';
 import Loading from '../shared/Loading';
 
@@ -20,12 +20,12 @@ class PostFeed extends Component {
         let postContent
 
         if(loading)
-            postContent = <Loading size={'5rem'} />
+            postContent = <Loading size={'5rem'}/>
 
         else if(posts === null)
             postContent = <div></div>
         else 
-            postContent = <PostList posts={posts} colSize={this.props.colSize}/>
+            postContent = <PostList posts={posts}/>
     
         return (
             postContent 
@@ -37,8 +37,7 @@ class PostFeed extends Component {
 PostFeed.propTypes = {
     getPosts: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
-    userId: PropTypes.string,
-    colSize: PropTypes.number
+    userId: PropTypes.string
 }
 
 const mapStateToProps = state => ({

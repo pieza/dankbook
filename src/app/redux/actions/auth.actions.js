@@ -1,9 +1,9 @@
 import axios from 'axios'
-import setAuthToken from '../utils/auth-token'
+import setAuthToken from '../../utils/auth-token'
 import jwt_decode from 'jwt-decode'
-import { setCookie, deleteCookie } from '../utils/cookie-helper'
+import { setCookie, deleteCookie } from '../../utils/cookie-helper'
 
-import { API_PATH, COOKIE_JWT } from '../constants/environment'
+import { API_PATH, COOKIE_JWT } from '../../constants/environment'
 import { GET_ERRORS, SET_CURRENT_USER } from './types'
 
 // Signup

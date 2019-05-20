@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getPost } from '../../actions/post.actions';
+import { getPost } from '../../redux/actions/post.actions';
 import Unauthorized from '../errors/403-unauthorized'
 import NotFound from '../errors/404-not-found'
 import Loading from '../shared/Loading';

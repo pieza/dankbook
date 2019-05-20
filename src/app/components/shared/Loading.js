@@ -8,7 +8,8 @@ class Loading extends Component {
             <div className="text-center">
                 <div className="spinner-border text-primary" role="status" style={{
                     width: size || "1rem",
-                    height: size || "1rem"
+                    height: size || "1rem",
+                    marginTop: "1rem"
                 }}>
                     <span className="sr-only">Loading...</span>
                 </div>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { signup } from '../../actions/auth.actions'
+import { signup } from '../../redux/actions/auth.actions'
 
 class Signup extends Component {
     constructor() {

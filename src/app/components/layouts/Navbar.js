@@ -3,13 +3,33 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { logout } from '../../actions/auth.actions'
+import { logout } from '../../redux/actions/auth.actions'
 
 class Navbar extends Component {
+    constructor() {
+        super()
+        this.state = {
+            searchText: ''
+        }
+    }
+
+    onChange(e){
+        const { name, value } = e.target
+        this.setState({
+            [name]: value
+        })
+    }
+
     onLogoutClick(e) {
         e.preventDefault()
         this.props.logout()
         this.props.history.push('/')
+    }
+
+    onSearchSubmit(e) {
+        const { searchText } = this.state
+        e.preventDefault()
+        this.props.history.push(`/search/profiles${searchText != '' ? ('?username=' + searchText) : ''}`)
     }
 
     render() {
@@ -60,8 +80,8 @@ class Navbar extends Component {
 
                         { isAuthenticated ? (
                             <div className="text-center w-60">
-                                <form className="form-inline">
-                                    <input className="form-control w-100" type="search" placeholder="Search" aria-label="Search"/>
+                                <form className="form-inline" onSubmit={this.onSearchSubmit.bind(this)}>
+                                    <input onChange={this.onChange.bind(this)} name="searchText" value={this.state.searchText} className="form-control w-100" type="search" placeholder="Search" aria-label="Search"/>
                                 </form>
                             </div>
 

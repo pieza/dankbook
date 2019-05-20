@@ -1,4 +1,4 @@
-import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, TOGGLE_LIKE, TOGGLE_COMMENT } from '../actions/types'
+import { ADD_POST, GET_POSTS, GET_POST, DELETE_POST, POST_LOADING, TOGGLE_LIKE, TOGGLE_COMMENT, CLEAR_POSTS } from '../actions/types'
 
 const initialState = {
     posts: [],
@@ -48,6 +48,11 @@ export default function (state = initialState, action) {
                 ...state,
                 posts: state.posts.map(_post => _post._id === action.payload._id 
                     ? action.payload : _post)
+            }
+        case CLEAR_POSTS: 
+            return {
+                ...state,
+                posts: null
             }
         default:
             return state

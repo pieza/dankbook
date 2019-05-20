@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { addPost } from '../../actions/post.actions'
+import { addPost } from '../../redux/actions/post.actions'
 import { IMAGE, VIDEO } from '../../../utils/enums/media-types'
 
 class AddPostForm extends Component {

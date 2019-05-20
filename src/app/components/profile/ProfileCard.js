@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { toggleFollow  } from '../../actions/profile.actions';
+import { toggleFollow  } from '../../redux/actions/profile.actions';
 
 class ProfileCard extends Component {
 

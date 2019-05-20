@@ -3,13 +3,32 @@ const router = express.Router()
 const passport = require('passport')
 const User = require('../models/user')
 
+router.get('/', async (req, res, next) => {
+    try{
+        let filters = {}
+
+        if(req.query)
+            filters = { username: { $regex: new RegExp(req.query.username), $options: 'i' } }
+
+        const users = await User.find(filters)
+    
+        const results = users.map(async user => {
+            return await user.getComplete()
+        })
+    
+        return res.status(200).json(await Promise.all(results))
+
+    } catch(err) {
+        next(err)
+    }
+})
+
 router.get('/:username', async (req, res, next) => {
     const user = await User.findOne({ username: req.params.username })
 
     if(!user)
         return res.status(404).json({errors:{ username: "User doesn't exist" }})
 
-    delete user.password
     return res.status(200).json(await user.getComplete())
 })
 

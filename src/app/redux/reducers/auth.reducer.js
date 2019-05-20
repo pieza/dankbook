@@ -1,4 +1,4 @@
-import isEmpty from '../../utils/validators/is-empty'
+import isEmpty from '../../../utils/validators/is-empty'
 
 import { SET_CURRENT_USER } from '../actions/types'
 

@@ -4,7 +4,7 @@ import { Context } from '../../Context'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { login } from '../../actions/auth.actions'
+import { login } from '../../redux/actions/auth.actions'
 
 class Login extends Component{
     static contextType = Context

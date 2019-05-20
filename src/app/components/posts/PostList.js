@@ -8,14 +8,13 @@ class PostList extends Component {
     render() {
         const { posts, colSize } = this.props
 
-        return posts.map(post => <PostItem key={post._id} post={post} colSize={colSize}/>)
+        return posts.map(post => <PostItem key={post._id} post={post}/>)
     }
 
 }
 
 PostList.propTypes = {
-    posts: PropTypes.array.isRequired,
-    colSize: PropTypes.number
+    posts: PropTypes.array.isRequired
 }
 
 export default PostList
