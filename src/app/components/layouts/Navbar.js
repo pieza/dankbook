@@ -92,12 +92,18 @@ class Navbar extends Component {
                             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
                             </button>
+                            { !isAuthenticated ?
+                                <div className="collapse navbar-collapse order-3 dual-collapse" id="menu">
+                                    { guestLinks }
+                                </div>
+                            : null }
                         </div>
                     </div>
-
-                    <div className="collapse navbar-collapse order-3 dual-collapse" id="menu">
-                        { isAuthenticated ? authLinks : guestLinks }
-                    </div>
+                    { isAuthenticated ? 
+                        <div className="collapse navbar-collapse order-3 dual-collapse" id="menu">
+                            { authLinks }
+                        </div>
+                    : null }
                 </nav>          
             </div>
         )

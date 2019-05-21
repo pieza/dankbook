@@ -91,6 +91,9 @@ img.avatar-navbar {
 
 .post-item {
     margin-top: 1rem;
+    /*box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; */ /* Mucha sombra*/
+    box-shadow: 0 .35rem .5rem rgba(0,0,0,.15)!important; /* Poca sombre*/
+    border-radius: .25rem!important;
 }
 
 .simple-header {

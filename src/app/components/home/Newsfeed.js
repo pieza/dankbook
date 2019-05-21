@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import AddPostForm from '../posts/AddPostForm'
 import PostFeed from '../posts/PostFeed';
-import TopProfiles from '../suggestions/TopProfiles';
+import TopProfiles from '../suggestions/profile-suggestions/TopProfiles';
 
 class Newsfeed extends Component {
 

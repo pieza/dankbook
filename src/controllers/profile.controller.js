@@ -23,6 +23,31 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.get('/popular', async (req, res, next) => {
+    try{
+        const users = await User.find()
+    
+        const results = users.map(async user => {
+            return await user.getComplete()
+        })
+
+        const completeUsers = await Promise.all(results)
+
+        let sortedUsers = completeUsers.sort((a, b) => {
+            console.log(a.followers.length, 'vs', b.followers.length)
+            return a.followers.length < b.followers.length 
+        }) 
+
+        if(req.query.top)
+            sortedUsers = sortedUsers.splice(0, req.query.top)
+            
+        return res.status(200).json(sortedUsers)
+
+    } catch(err) {
+        next(err)
+    }
+})
+
 router.get('/:username', async (req, res, next) => {
     const user = await User.findOne({ username: req.params.username })
 

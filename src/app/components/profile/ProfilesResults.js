@@ -55,7 +55,6 @@ class ProfilesResults extends Component {
                         </div>
                     </div>
                 </div>
-
             )
         
         return (

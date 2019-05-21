@@ -16,7 +16,7 @@ class ProfileItem extends Component {
             <div className="card post-item clickable" onClick={this.changeRoute.bind(this, `/profile/${profile.username}`)}>
                 <div className="row no-gutters">
                     <div className="col-xs-1 col-sm-3 col-md-3 col-lg-3">
-                        <img src={profile.avatar} className="card-img" alt={ profile.username }/>
+                        <img src={profile.avatar} className="card-img" alt={ profile.username } style={{width:100, height:100}}/>
                     </div>
                     <div className="col-xs-3 col-sm-6 col-md-6 col-lg-6">
                         <div className="card-body">

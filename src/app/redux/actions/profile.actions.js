@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER } from './types';
+import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER, GET_POPULAR_PROFILES, POPULAR_PROFILES_LOADING } from './types';
 import { API_PATH } from '../../constants/environment'
 
 import { getParams } from '../../utils/query-params'
@@ -62,6 +62,24 @@ export const getProfiles = (filters) => dispatch => {
 		)
 }
 
+export const getPopularProfiles = (filters) => dispatch => {
+	dispatch(setPopularProfilesLoading())
+	axios
+		.get(`${API_PATH}/profile/popular${getParams(filters)}`)
+		.then(res =>
+			dispatch({
+				type: GET_POPULAR_PROFILES,
+				payload: res.data
+			})
+		)
+		.catch(err =>
+			dispatch({
+				type: GET_POPULAR_PROFILES,
+				payload: null
+			})
+		)
+}
+
 // Follow user
 export const toggleFollow = id => dispatch => {
 	//dispatch(setProfileLoading())
@@ -105,6 +123,12 @@ export const deleteAccount = () => dispatch => {
 export const setProfileLoading = () => {
 	return {
 		type: PROFILE_LOADING
+	}
+}
+
+export const setPopularProfilesLoading = () => {
+	return {
+		type: POPULAR_PROFILES_LOADING
 	}
 }
 
