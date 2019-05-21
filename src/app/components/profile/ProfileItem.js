@@ -6,7 +6,7 @@ class ProfileItem extends Component {
 
     render() {
         const { profile } = this.props
-        console.log(profile)
+
         return (
             <div className="card post-item">
                 <div className="card-body">

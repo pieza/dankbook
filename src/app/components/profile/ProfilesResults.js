@@ -28,7 +28,8 @@ class ProfilesResults extends Component {
             const params = new URLSearchParams(location.search)
             const username = params.get('username') 
             this.props.getProfiles({username})
-        }
+        } else 
+            this.props.getProfiles()
     }
 
     componentWillUnmount() {

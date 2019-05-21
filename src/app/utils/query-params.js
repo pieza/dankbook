@@ -1,10 +1,10 @@
 export const getParams = filters => {
+    let str = ''
     for (let property in filters) {
-        let str = ''
         let first = true
         if (filters.hasOwnProperty(property)) {
             let value = filters[property]
-            if(value !== '' && value !== 0 && value !== undefined){
+            if(value !== '' && value !== 0 && value !== undefined) {
                 if(first){
                     str += `?${property}=${value}`
                     first = false
@@ -13,6 +13,6 @@ export const getParams = filters => {
                     str += `&${property}=${value}`
             }          
         }
-        return str
     }
+    return str
 }
