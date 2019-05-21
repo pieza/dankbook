@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { deletePost, toggleLike } from '../../redux/actions/post.actions'
 import MediaItem from './media/MediaItem'
-import Loading from '../shared/Loading'
-import AddCommentForm from './comment/AddCommentForm'
-import CommentList from './comment/CommentList'
-import CommentsModal from './comment/CommentsModal';
-import LikeButton from './like/LikeButton';
+import CommentsModal from './comment/CommentsModal'
+import LikeButton from './like/LikeButton'
 
 class PostItem extends Component {
 

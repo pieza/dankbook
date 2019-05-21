@@ -29,7 +29,7 @@ class Navbar extends Component {
     onSearchSubmit(e) {
         const { searchText } = this.state
         e.preventDefault()
-        this.props.history.push(`/search/profiles${searchText != '' ? ('?username=' + searchText) : ''}`)
+        this.props.history.push(`/search/profiles${(searchText != '' && searchText != null && searchText != undefined) ? ('?username=' + searchText) : ''}`)
     }
 
     render() {
@@ -76,24 +76,28 @@ class Navbar extends Component {
             <div className="navbar-container">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
                     <div className="container-fluid">
-                        <Link to="/" className="navbar-brand">DankBook</Link>
+                        <div className="navbar-form navbar-left d-none d-lg-block">
+                            <Link to="/" className="navbar-brand">DankBook</Link>
+                        </div>
 
                         { isAuthenticated ? (
-                            <div className="text-center w-60">
-                                <form className="form-inline" onSubmit={this.onSearchSubmit.bind(this)}>
-                                    <input onChange={this.onChange.bind(this)} name="searchText" value={this.state.searchText} className="form-control w-100" type="search" placeholder="Search" aria-label="Search"/>
+                            <div className="navbar-form w-50">
+                                <form className="" onSubmit={this.onSearchSubmit.bind(this)}>
+                                    <input onChange={this.onChange.bind(this)} name="searchText" value={this.state.searchText} className="form-control" type="search" placeholder="Search users..." aria-label="Search"/>
                                 </form>
                             </div>
 
                         ) : null }
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse order-3 dual-collapse" id="menu">
-                            { isAuthenticated ? authLinks : guestLinks }
+                        <div className="navbar-form">
+                            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span className="navbar-toggler-icon"></span>
+                            </button>
                         </div>
                     </div>
 
+                    <div className="collapse navbar-collapse order-3 dual-collapse" id="menu">
+                        { isAuthenticated ? authLinks : guestLinks }
+                    </div>
                 </nav>          
             </div>
         )

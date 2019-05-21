@@ -13,6 +13,7 @@ class ProfilePage extends Component {
     componentDidMount() {
         this.loadUser()
         this.unlisten = this.props.history.listen((location, action) => {
+            console.log(location)
             this.loadUser(location.pathname.split('/').reverse()[0])
         })
     }
@@ -42,11 +43,11 @@ class ProfilePage extends Component {
             profileContent = (
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3 sticky-top">
+                        <div className="col-sm-3 sticky-sm-top">
                             <ProfileCard profile={profile}/>
                         </div>
-                        <div className="col-md-7">
-                            <PostFeed userId={profile._id}/>
+                        <div className="col-sm-7">
+                            { profile._id ? <PostFeed userId={profile._id}/> : null }
                         </div>
                     </div>
                 </div>
