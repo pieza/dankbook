@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const User = require('../models/user')
+const { uploadImage, deleteImage } = require('../utils/image-uploader')
 
 router.get('/', async (req, res, next) => {
     try{
@@ -80,6 +81,34 @@ router.post('/follow/:id', passport.authenticate('jwt', {session: false}), async
 
         return res.status(200).json(await userToFollow.getComplete())
     } catch(err) {
+        next(err)
+    }
+})
+
+router.put('/:id', async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id)
+
+        if(!user)
+            return res.status(404).json({errors:{ username: "User doesn't exist" }})
+        
+        if(req.body){
+            if(req.body.description)
+                user.description = req.body.description
+        }
+
+        if(req.file) {
+            deleteImage(user.avatar).catch(err => { console.log(err)})
+
+            const url = await uploadImage(req.file)
+            user.avatar = url
+        }
+        
+        const userUpdated = await user.save()
+
+        return res.status(200).json(await userUpdated.getComplete())
+
+    } catch(err){
         next(err)
     }
 })

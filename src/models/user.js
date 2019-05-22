@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt-nodejs')
 const UserSchema = new Schema({
     username: { type: String, require: true },
     email: { type: String, require: true },
+    description: { type: String, default: 'Generic description.' },
     password: { type: String, require: true },
     avatar: { type: String },
     badges: [{
@@ -44,7 +45,8 @@ UserSchema.methods.getComplete = async function () {
 
     return { 
         _id: this._id,
-        username: this.username, 
+        username: this.username,
+        description: this.description, 
         following: this.following,
         followers: followers,
         badges: this.badges,

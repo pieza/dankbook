@@ -94,8 +94,22 @@ router.post('/signup', async (req, res, next) => {
     }
 })
 
-router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
-    res.json({msg: 'success'})
+router.get('/current', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    const user = await User.findById(req.user._id)
+    const payload = user.getSimple()
+    console.log(user)    
+    jtw.sign(payload,
+        process.env.SECRET_JWT_KEY, 
+        { expiresIn: 3600 }, 
+        (err, token) => {
+            if(err)
+                next(err)
+            res.json({
+                success: true,
+                token: 'Bearer ' + token
+            })
+        }
+    )
 })
 
 module.exports = router;

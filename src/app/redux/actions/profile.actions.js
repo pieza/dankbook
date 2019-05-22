@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER, GET_POPULAR_PROFILES, POPULAR_PROFILES_LOADING } from './types';
 import { API_PATH } from '../../constants/environment'
 
+import { getCurrent } from './auth.actions'
 import { getParams } from '../../utils/query-params'
 
 // Get current profile
@@ -92,6 +93,27 @@ export const toggleFollow = id => dispatch => {
 			})
 		)
 		.catch(err =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: null
+			})
+		)
+}
+
+
+// Update profile
+export const updateProfile = (id, profile) => dispatch => {
+	dispatch(setProfileLoading())
+	axios
+		.put(`${API_PATH}/profile/${id}`, profile)
+		.then(res => {
+			dispatch(getCurrent())
+			dispatch({
+				type: GET_PROFILE,
+				payload: res.data
+			})
+		})
+		.catch(err => 
 			dispatch({
 				type: GET_PROFILE,
 				payload: null

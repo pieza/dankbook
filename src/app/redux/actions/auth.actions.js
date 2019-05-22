@@ -44,6 +44,29 @@ export const login = (userData, history) => dispatch => {
         )
 }
 
+// get current
+export const getCurrent = () => dispatch => {
+    axios.get(API_PATH + '/current')
+        .then(res => {
+            // save to localStorage
+            const { token } = res.data
+            // set token to ls
+            setCookie(COOKIE_JWT, token, 1)
+            // set token to Auth header
+            setAuthToken(token);
+            // decode token to get user data
+            const decoded = jwt_decode(token)
+            // Set current user
+            dispatch(setCurrentUser(decoded))
+        })
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data.errors
+            })
+        )
+}
+
 // Set logged in user
 export const setCurrentUser = decoded => {
     return {
