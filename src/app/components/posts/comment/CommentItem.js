@@ -54,7 +54,7 @@ class CommentItem extends Component {
                             <a className="dropdown-item">
                                 <i className="material-icons left">flag</i> Report
                             </a>
-                            <div className="dropdown-divider"></div>
+                            { comment.user_id === auth.user._id ? <div className="dropdown-divider"></div> : null }
                             { comment.user_id === auth.user._id ? (
                                 <a className="dropdown-item" onClick={this.onDeleteClick.bind(this, comment.post_id, comment._id)}>
                                     <i className="material-icons left">delete</i> Delete
