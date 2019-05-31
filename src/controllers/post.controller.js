@@ -7,8 +7,13 @@ const postService = require('../services/post.service')
 const commentService = require('../services/comment.service')
 const Post = require('../models/post')
 
-router.get('/', async (req, res, next) => {
-    postService.findAll().then((posts) => {
+router.get('/', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+    let user_id = null
+    
+    if(req.user)
+        user_id = req.user._id
+    
+    postService.findHome(user_id).then((posts) => {
         if(posts)
             return res.json(posts)
         else 

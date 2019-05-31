@@ -7,8 +7,18 @@ const mediaService = require('./media.service')
 
 const service = {}
 
-service.findAll = async () => {
-    const postList = await Post.find().sort({ date: -1 })
+service.findHome = async (user_id) => {
+    let filters = {}
+
+    if(user_id) {
+        filters.user_id = [{_id: user_id}]
+        const actUser = await User.findById(user_id)
+
+        if(actUser && actUser.following)
+            filters.user_id.push(...actUser.following)
+    }
+
+    const postList = await Post.find(filters).sort({ date: -1 })
 
     const results = postList.map(async post => {
         return await post.getComplete()

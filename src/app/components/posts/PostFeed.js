@@ -17,13 +17,21 @@ class PostFeed extends Component {
 
     render() {
         const { posts, loading } = this.props.post
+        const { userId } = this.props
+
         let postContent
 
         if(loading)
             postContent = <Loading size={'5rem'}/>
 
-        else if(posts === null)
-            postContent = <div></div>
+        else if(posts === null || posts.length == 0)
+            postContent = 
+                <div className="text-center mt-5" style={{color: "grey"}}>
+                    { userId ? 
+                        <h5>There are no post to show for this user.</h5>
+                        : <h5>There are no post to show, start following users to see posts!</h5> 
+                    }
+                </div>
         else 
             postContent = <PostList posts={posts}/>
     

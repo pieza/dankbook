@@ -35,7 +35,6 @@ router.get('/popular', async (req, res, next) => {
         const completeUsers = await Promise.all(results)
 
         let sortedUsers = completeUsers.sort((a, b) => {
-            console.log(a.followers.length, 'vs', b.followers.length)
             return a.followers.length < b.followers.length 
         }) 
 
