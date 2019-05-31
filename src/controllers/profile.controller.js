@@ -70,18 +70,12 @@ router.post('/follow/:id', passport.authenticate('jwt', {session: false}), async
 
         // check if user already follow the user
         const followIndex = user.following.findIndex(f => { return f._id +''  === userToFollow._id + ''})
-        console.log(userToFollow._id)
-        console.log(user.following)
-        if(followIndex >= 0){
-            console.log('si')
+
+        if(followIndex >= 0)
             user.following.splice(followIndex, 1)
-        }
-            
-        else{
-            console.log('no')
+        
+        else
             user.following.push(userToFollow._id)
-        }
-            
 
         await user.save()
 

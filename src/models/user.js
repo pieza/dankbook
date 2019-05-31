@@ -36,7 +36,7 @@ UserSchema.methods.getSimple = function () {
 
 UserSchema.methods.getComplete = async function () {
     const userFollowers = await mongoose.model('User', UserSchema).find( { following: { $elemMatch: {_id: this._id}} })
-    console.log(userFollowers)
+    
     const followers = []
 
     userFollowers.forEach(u => {
