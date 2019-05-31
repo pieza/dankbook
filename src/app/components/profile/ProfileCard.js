@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { toggleFollow, updateProfile } from '../../redux/actions/profile.actions'
 import Loading from '../shared/Loading';
+import FollowButton from './follow/FollowButton';
 
 class ProfileCard extends Component {
     constructor() {
@@ -11,26 +12,19 @@ class ProfileCard extends Component {
             description: '',
             image: null,
             image_preview: '',
-            errors: {}
+            errors: {},
+            isEditDescription: false
         }
         this.onChange = this.onChange.bind(this)
         this.onFileChange = this.onFileChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onEditDescriptionClick = this.onEditDescriptionClick.bind(this)
+        this.onCancelEditDescriptionClick = this.onCancelEditDescriptionClick.bind(this)
     }
 
-    onFollowClick(){
-        const { profile } = this.props.profile
-        this.props.toggleFollow(profile._id)
-    }
-
-    findUserFollow() {
-        const { profile } = this.props.profile
-        const { user } = this.props.auth
-        
-        if (profile.followers && profile.followers.filter(follower => { return follower._id+'' == user._id+''}).length > 0) 
-            return true
-        else 
-            return false      
+    componentDidMount(){
+        if(!this.state.isEditDescription)
+            this.setState({description: this.props.profile.profile.description})
     }
 
     onChange(e) {
@@ -38,6 +32,14 @@ class ProfileCard extends Component {
         this.setState({
             [name]: value
         })
+    }
+
+    onEditDescriptionClick() {
+        this.setState({ isEditDescription: true })
+    }
+
+    onCancelEditDescriptionClick() {
+        this.setState({ isEditDescription: false, description: this.props.profile.profile.description })
     }
 
     onFileChange(e) {
@@ -56,21 +58,14 @@ class ProfileCard extends Component {
         e.preventDefault()
 
         const { user } = this.props.auth
-        const formData = new FormData()
+        this.props.updateProfile(user._id, { description: this.state.description })
+        this.setState({isEditDescription: false})
 
-        formData.append('user_id', user._id)
-        formData.append('description', this.state.description)
-
-        if (this.state.image) {
-            formData.append('media_string', JSON.stringify({ type: IMAGE }))
-            formData.append('file', this.state.image)
-        }
     }
 
     render() {
         const { user } = this.props.auth
         const { profile, loading } = this.props.profile
-        const isFollowing = this.findUserFollow()
 
         let content
 
@@ -102,8 +97,7 @@ class ProfileCard extends Component {
                                 </div>
                                 <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={this.onFileChange} hidden></input>
                             </label>
-                        : 
-                            <img className="card-img-top rounded-circle mt-3" src={ profile.avatar } style={{ width:'128px', height: '128px', backgroundColor: 'grey'}}/> 
+                            : <img className="card-img-top rounded-circle mt-3" src={ profile.avatar } style={{ width:'128px', height: '128px', backgroundColor: 'grey'}}/> 
                         }
                         
                     </div>
@@ -112,13 +106,22 @@ class ProfileCard extends Component {
                         <ul className="list-group list-group-flush">
                             {/* Username */}
                             <li className="list-group-item">
-                                <h5 className="card-title">{ profile.username }</h5>
+                                <h5 className="card-title">{ profile.username } </h5> 
                             </li>
     
                             {/* Description */}
                             { profile.description ? 
                                 <li className="list-group-item">
-                                    <p className="card-text">{ profile.description }</p>
+                                    { this.state.isEditDescription ? 
+                                        <form onSubmit={this.onSubmit}>
+                                            <textarea name="description" value={this.state.description} onChange={this.onChange} style={{width: "100%", resize: "none"}}></textarea>
+                                            <button type="button" onClick={this.onCancelEditDescriptionClick}>Cancel</button>
+                                            <button type="submit">Save</button>
+                                        </form>
+
+                                        : <p className="card-text">{ profile.description } { profile._id == user._id ? <button onClick={this.onEditDescriptionClick}>xd</button> : null }</p>  
+                                    }
+                                    
                                 </li>
                             : null }
     
@@ -128,13 +131,7 @@ class ProfileCard extends Component {
                             </li>
     
                             {/* Follow */}
-                            { profile._id != user._id ? 
-                                <li className="list-group-item">
-                                    <button type="button" className={'btn mb-0 btn-' + (isFollowing ? 'danger' : 'info') } onClick={this.onFollowClick.bind(this)}>
-                                        <i className="material-icons">accessibility</i> { isFollowing ? 'UnFollow' : 'Follow' }
-                                    </button>
-                                </li>
-                            : null}
+                            <FollowButton profile={profile}/>
     
                             {/* Badges */}
                             { profile.badges ? 

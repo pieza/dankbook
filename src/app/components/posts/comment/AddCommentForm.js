@@ -60,7 +60,7 @@ class AddCommentForm extends Component {
                                     'is-invalid': errors.text
                                 })} required/>
                                 <div className="input-group-append">
-                                    <button className="btn btn-outline-info" type="submit">Comment</button>
+                                    <button className="btn btn-info" type="submit">Comment</button>
                                 </div>
                                 {errors.text && (<div className="invalid-feedback">{errors.text}</div>)}
                             </div>

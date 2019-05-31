@@ -6,7 +6,7 @@ class Loading extends Component {
 
         return (
             <div className="text-center">
-                <div className="spinner-border text-primary" role="status" style={{
+                <div className="spinner-border text-info" role="status" style={{
                     width: size || "1rem",
                     height: size || "1rem",
                     marginTop: "1rem"

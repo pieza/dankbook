@@ -22,13 +22,15 @@ class PostPage extends Component {
 
         if (loading)
             postContent = <Loading size="6rem" />
-        else if (post === null)
+        else if (!post.user)  // not recomended technique, must consider to look for another
             postContent = <NotFound />
         else
             postContent = (
                 <div className="container">
                     <div className="row">
-                        <PostItem colSize="12" post={post} />
+                        <div className="col-12">
+                            <PostItem post={post} isPage />
+                        </div>
                     </div>
                 </div>
             )

@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { deletePost, toggleLike } from '../../redux/actions/post.actions'
 import MediaItem from './media/MediaItem'
 import CommentsModal from './comment/CommentsModal'
+import CommentList from './comment/CommentList'
+import AddCommentForm from './comment/AddCommentForm'
 import LikeButton from './like/LikeButton'
 
 class PostItem extends Component {
@@ -18,7 +20,7 @@ class PostItem extends Component {
     }
 
     render() {
-        const { post, auth, showActions, colSize } = this.props
+        const { post, auth, showActions, isPage } = this.props
 
         return (
             <div className="card post-item" >
@@ -49,20 +51,24 @@ class PostItem extends Component {
                 </ul>
                 <div className="card-body align-items-center justify-content-center" style={{padding: ".75rem"}}>
                     <LikeButton post={post}/>
+                    
+                        { !isPage ?
+                        <a className=" clickable float-right post-action" onClick={()=>{$('#' + post._id).modal()}}><i className="material-icons left">add_comment</i> ({post.comments.length}) comment</a> 
+                        : <a className="float-right post-action"><i className="material-icons left">add_comment</i> ({post.comments.length}) comments</a>  }
 
-                    <a className=" clickable float-right post-action" onClick={()=>{$('#' + post._id).modal()}}><i className="material-icons left">add_comment</i> ({post.comments.length}) comment</a>
-                    <CommentsModal post={post}/>
+                        {/** Modal */}
+                        { !isPage ? <CommentsModal post={post}/> : null }
                 </div>
 
                 {/* Comments */}
-                {/*
-                <div className="card-footer">
-                    <ul className="list-group list-group-flush">
+                { isPage ? 
+                <div className="card-footer" style={{backgroundColor: "white"}}>
+                    <ul className="list-group list-group-flush" >
                         { post.comments ? <CommentList comments={post.comments}/> : null }
                         <AddCommentForm post_id={post._id}/>
                     </ul>
                 </div>
-                */}
+                : null }
             </div>
         )
     }
@@ -74,6 +80,7 @@ PostItem.defaultProps = {
 
 PostItem.propTypes = {
     deletePost: PropTypes.func.isRequired,
+    isPage: PropTypes.bool,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
 }
