@@ -13,6 +13,7 @@ class ProfilePage extends Component {
     componentDidMount() {
         this.loadUser()
         this.unlisten = this.props.history.listen((location, action) => {
+            console.log(location.pathname.split('/').reverse()[0])
             this.loadUser(location.pathname.split('/').reverse()[0])
         })
     }
@@ -25,7 +26,7 @@ class ProfilePage extends Component {
     }
 
     componentWillUnmount() {
-        this.unlisten()
+        //this.unlisten()
     }
 
     render() {

@@ -15,7 +15,7 @@ class FollowButton extends Component {
     findUserFollow() {
         const { profile } = this.props
         const { user } = this.props.auth
-        
+        console.log(profile)
         if (profile.followers && profile.followers.filter(follower => { return follower._id+'' == user._id+''}).length > 0) 
             return true
         else 
