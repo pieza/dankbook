@@ -10,12 +10,11 @@ class Landing extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 text-center">
-                                <h1 className="display-3 mb-4">Titulo xd</h1>
+                                <h1 className="display-3 mb-4">Welcome to DankBook!</h1>
                                 <p className="lead">
                                     {' '}
-                                    Bottom text
+                                    Somebody once told me the world is gonna roll me
                                 </p>
-                                <hr />
                                 <Link to="/signup" className="btn btn-lg btn-info mr-2">
                                     Sign Up
                                 </Link>

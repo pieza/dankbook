@@ -87,7 +87,7 @@ class ProfileCard extends Component {
     
                         { profile._id == user._id ? 
                             <label className="img-container mt-3 clickable">
-                                <img className="card-img-top rounded-circle" src={ profile.avatar } style={{ width:'10rem', height: '10rem', backgroundColor: 'grey'}}/>
+                                <img className="card-img-top rounded-circle" src={ profile.avatar } style={{ width:'10rem', height: '10rem', backgroundColor: '#fff'}}/>
                                 <div className="overlay">
                                     <span>
                                         <i className="material-icons">edit</i>
@@ -106,34 +106,19 @@ class ProfileCard extends Component {
                         <ul className="list-group list-group-flush">
                             {/* Username */}
                             <li className="list-group-item">
-                                <h5 className="card-title">{ profile.username } </h5> 
-                            </li>
-    
-                            {/* Description */}
-                            { profile.description ? 
-                                <li className="list-group-item">
-                                    { this.state.isEditDescription ? 
-                                        <form onSubmit={this.onSubmit}>
-                                            <textarea name="description" value={this.state.description} onChange={this.onChange} style={{width: "100%", resize: "none"}}></textarea>
-                                            <button type="button" onClick={this.onCancelEditDescriptionClick}>Cancel</button>
-                                            <button type="submit">Save</button>
-                                        </form>
+                                <h5 className="card-title">{ profile.username }  { profile.badges ? 
 
-                                        : <p className="card-text">{ profile.description } { profile._id == user._id ? <button onClick={this.onEditDescriptionClick}>xd</button> : null }</p>  
-                                    }
-                                    
-                                </li>
-                            : null }
-    
-                            {/* Followers count */}
-                            <li className="list-group-item">
-                                <h6 className="card-title">Following { profile.following ? profile.following.length : 0 } | Followers { profile.followers ? profile.followers.length : 0 }</h6> 
+                                    profile.badges.map((badge, index) => {
+                                            return (
+                                                <span key={index} className={ 'badge badge-pill badge-' + badge.color }>{ badge.description }</span>
+                                            )
+                                        }
+                                    )
+                              
+                            : null }</h5> 
                             </li>
-    
-                            {/* Follow */}
-                            <FollowButton profile={profile}/>
-    
-                            {/* Badges */}
+                            
+                            {/* Badges 
                             { profile.badges ? 
                                 <li className="list-group-item">
                                     {profile.badges.map((badge, index) => {
@@ -144,7 +129,30 @@ class ProfileCard extends Component {
                                     )}
                                 </li>
                             : null }
+                            */}
+                            {/* Description */}
+                            { profile.description ? 
+                                <li className="list-group-item">
+                                    { this.state.isEditDescription ? 
+                                        <form onSubmit={this.onSubmit}>
+                                            <textarea name="description" value={this.state.description} onChange={this.onChange} style={{width: "100%", resize: "none"}}></textarea>
+                                            <button className="btn btn-info" type="submit">Save</button>
+                                            <button className="btn btn-danger" type="button" onClick={this.onCancelEditDescriptionClick}>Cancel</button>
+                                        </form>
+
+                                        : <p className="card-text">{ profile.description } { profile._id == user._id ? <span className="clickable" onClick={this.onEditDescriptionClick}><i className="material-icons">edit</i></span> : null }</p>  
+                                    }
+                                    
+                                </li>
+                            : null }
+
+                            {/* Followers count */}
+                            <li className="list-group-item">
+                                <h6 className="card-title">Following { profile.following ? profile.following.length : 0 } | Followers { profile.followers ? profile.followers.length : 0 }</h6> 
+                            </li>
     
+                            {/* Follow */}
+                            <FollowButton profile={profile}/>
                         </ul>
                         
                     </div>

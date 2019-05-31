@@ -58,10 +58,6 @@ class Login extends Component{
                 <div className="dark-overlay landing-inner">
                     <div className="container">
                         <div className="row align-items-center justify-content-center">
-                            <div className="col-md-6">
-                                <p>Logueese ak7</p>
-                            </div>
-                            <div className="col-md-1"></div>
                             <div className="col-md-5">
                                 <div className="card">
                                     <div className="card-body">
@@ -103,7 +99,7 @@ class Login extends Component{
                                         </form>
                                     </div>
                                     <div className="card-footer">
-                                        <center><Link to="/signup">create account</Link></center>               
+                                        <center><Link to="/signup">Create account</Link></center>               
                                     </div>
                                 </div>
                             </div>

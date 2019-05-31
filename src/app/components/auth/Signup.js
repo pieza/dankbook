@@ -58,10 +58,6 @@ class Signup extends Component {
                 <div className="dark-overlay landing-inner">
                     <div className="container">
                         <div className="row align-items-center justify-content-center">
-                            <div className="col-md-6">
-                                <p>Creese una cuenta ak7</p>
-                            </div>
-                            <div className="col-md-1"></div>
                             <div className="col-md-5">
                                 <div className="card">
                                     <div className="card-body">

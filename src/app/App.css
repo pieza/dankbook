@@ -14,7 +14,7 @@
 /* Landing */
 .landing {
     position: relative;
-    background: url("https://www.models-resource.com/resources/big_icons/22/21899.png") no-repeat;
+    background: url("/assets/bg.png") no-repeat;
     background-size: cover;
     background-position: center;
     height: 93.9vh;
@@ -27,7 +27,7 @@
 }
 
 .dark-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.479);
     position: absolute;
     top: 0;
     left: 0;
@@ -169,7 +169,7 @@ img.avatar-navbar {
 
   /* theme */
   body {
-    background-color: rgb(252, 252, 252);
+    background-color: rgb(247, 239, 239);
   }
   /*
   [class*="-info"]{
