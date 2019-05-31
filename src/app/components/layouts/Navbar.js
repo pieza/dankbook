@@ -76,7 +76,7 @@ class Navbar extends Component {
             <div className="navbar-container">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
                     <div className="container-fluid">
-                        <div className="navbar-form navbar-left d-none d-lg-block">
+                        <div className="navbar-form navbar-left  d-lg-block">
                             <Link to="/" className="navbar-brand">DankBook</Link>
                         </div>
 
